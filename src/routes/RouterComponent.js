@@ -16,6 +16,7 @@ import { getUserData } from '../services/authenticationService.js';
 import RoleRoute from './RoleRoute.js';
 import AuthenticatedRoute  from './AuthenticatedRoute.js';
 import ErrorAlert from '../components/Notifications/ErrorAlert.js';
+import AboutMe from '../pages/AboutMe.js';
 
 function RouterComponent() {
     const location = useLocation();
@@ -40,7 +41,8 @@ function RouterComponent() {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<HomePage type='all' />} />
+                <Route path="/" element={<AboutMe/>} />
+                <Route path="/services" element={<HomePage type='all' />} />
                 <Route path="/favorites" element={<HomePage type='favorites'/>} />
                 <Route path="/articles/:id" element={<ArticlePage />} />
                 <Route path="/articles/new" element={<RoleRoute element={NewArticlePage} requiredRoles={['author', 'admin']} />} />

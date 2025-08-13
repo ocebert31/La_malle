@@ -44,7 +44,7 @@ function ConfirmationEmailPage ({ isEmailUpdate = false }) {
                     <p className="text-2xl font-bold text-primary mb-4">
                         {isEmailUpdate ? 'Votre adresse mail a été mise à jour' : 'Votre compte est validé !'}
                     </p>
-                    <Link to={isEmailUpdate ? '/' : '/login'} className="mt-4 inline-block px-6 py-2 text-white bg-secondary rounded-full hover:bg-[#e97a47] transition duration-300">
+                    <Link to={isEmailUpdate ? '/' : '/login'} className="mt-4 inline-block px-6 py-2 text-white bg-secondary rounded-full hover:bg-primary transition duration-300">
                         {isEmailUpdate ? "Cliquez ici pour retourner à l'accueil" : 'Cliquez ici pour vous connecter'}
                     </Link>
                 </div>

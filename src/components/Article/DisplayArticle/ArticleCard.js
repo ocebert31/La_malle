@@ -30,9 +30,11 @@ function ArticleCard({ article }) {
                     </a>
                 </div>
             </div>
-            <div className="w-full md:w-2/5 flex-shrink-0 relative">
-                <img src={article.imageUrl} alt={article.title} className="w-40 md:w-full h-auto object-cover rounded-lg"/>
-                <span className="text-xs absolute top-2 md:right-2 md:text-xl bg-primary text-white  rounded-full px-2 py-1">{article.categoryName}</span>
+            <div className="w-full md:w-2/5 flex-shrink-0 relative overflow-hidden rounded-lg aspect-[4/3]">
+            <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover"/>
+                <span className="text-xs absolute top-2 md:right-2 md:text-xl bg-primary text-white rounded-full px-2 py-1">
+                    {article.categoryName}
+                </span>
             </div>
         </div>
     );

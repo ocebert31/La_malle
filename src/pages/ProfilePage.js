@@ -45,7 +45,7 @@ function ProfilePage() {
     }
 
     return (
-        <div className="max-w-md mx-auto p-4 bg-white rounded-lg mt-12 min-h-screen">
+        <div className="max-w-md mx-auto p-4 bg-white rounded-lg mt-12 min-h-screen text-center">
             <h1 className="text-xl text-center font-semibold text-gray-800 mt-4">Bienvenue {user.pseudo}</h1>
             {user.email}
             <div className="flex justify-center"> 

@@ -24,14 +24,14 @@ function EditArticleForm({ article, setArticle, cancelEdit }) {
             setArticle(result.article);
             cancelEdit();
         } catch {
-            setShowErrorAlert("Erreur lors de l'édition de l article.");
+            setShowErrorAlert("Erreur lors de l'édition de la préstation.");
         }
     };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full p-6 max-w-6xl bg-white rounded-lg shadow-lg container-alignement-article-edition">
-                <h2 className="text-2xl font-bold text-center text-primary mb-6">Édition de l'article</h2>
+                <h2 className="text-2xl font-bold text-center text-primary mb-6">Édition de la préstation</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <Controller name="title" control={control} render={({ field }) => (<TitleInput {...field} errorMessage={errors.title?.message}/>)} rules={{ required: "Titre requis" }}/>
                     <Controller name="content" control={control} render={({ field }) => (<ContentEditor {...field} errorMessage={errors.content?.message}/>)} rules={{ required: "Contenu requis" }}/>

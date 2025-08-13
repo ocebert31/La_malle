@@ -16,7 +16,7 @@ function DeleteArticleButton({ id }) {
             await deleteArticle(id, token);
             navigate('/');
         } catch (error) {
-            setShowErrorAlert("Erreur lors de la suppression de l article.")
+            setShowErrorAlert("Erreur lors de la suppression de la préstation.")
         }
     };
 

@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary : "#6d4cb4",
-        secondary : "#ff8f5f"
+        primary : "#7a6bfc",
+        secondary : "#a6d947"
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],

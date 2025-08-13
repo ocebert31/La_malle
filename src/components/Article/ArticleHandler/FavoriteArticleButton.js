@@ -20,7 +20,7 @@ function FavoriteArticleButton({ article }) {
             const result = await favoriteArticle(article._id, token);
             setFavorite(result.favorite);
         } catch {
-            setShowErrorAlert("Erreur lors de l'ajout de l'article dans la liste des favoris");
+            setShowErrorAlert("Erreur lors de l'ajout de la préstation dans la liste des favoris");
         }
     };
 

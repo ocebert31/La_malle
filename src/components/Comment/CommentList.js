@@ -4,7 +4,7 @@ import DisplayComment from './DisplayComment/DisplayComment';
 import NewCommentForm from './CommentForm/NewCommentForm';
 import { useAuth } from '../../context/AuthContext';
 import defaultAvatarData from '../../utils/constants/defaultAvatarOptions';
-import InfiniteScrollComponent from '../../common/UI/InfiniteScroll';
+import InfiniteScrollComponent from '../../common/UI/infiniteScroll';
 import ErrorAlert from '../Notifications/ErrorAlert';
 import { checkHasMore } from '../../utils/helpers/checkHasMore';
 

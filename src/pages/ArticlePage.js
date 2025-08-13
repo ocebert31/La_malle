@@ -23,7 +23,7 @@ function ArticlePage() {
                 const result = await getOneArticle(id, token);
                 setArticle(result);
             } catch {
-                setShowErrorAlert("Erreur lors de la récupération de l article.");
+                setShowErrorAlert("Erreur lors de la récupération de la préstation.");
             }
         };
         loadArticle();

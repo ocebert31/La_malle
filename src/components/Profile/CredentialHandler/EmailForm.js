@@ -28,7 +28,7 @@ function EmailForm() {
     };
 
     return (
-        <div className="mt-6">
+        <div className="mt-6 justify-center">
             <button className="flex items-center text-lg font-semibold text-gray-800 mb-4 focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
                 <FontAwesomeIcon icon={faChevronDown} className={`w-5 h-5 mr-2 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`} />Modifier l'adresse e-mail 
             </button>

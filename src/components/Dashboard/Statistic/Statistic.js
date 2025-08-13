@@ -25,9 +25,9 @@ function Statistiques() {
             <h1 className="text-2xl font-bold mb-4">Statistiques</h1>
             {stats ? (
                 <div className="bg-white p-4 shadow rounded">
-                    <p><strong>Total Users:</strong> {stats.usersCount}</p>
-                    <p><strong>Total Articles:</strong> {stats.articlesCount}</p>
-                    <p><strong>Total Comments:</strong> {stats.commentsCount}</p>
+                    <p><strong>Total utilisateurs:</strong> {stats.usersCount}</p>
+                    <p><strong>Total préstations:</strong> {stats.articlesCount}</p>
+                    <p><strong>Total commentaires:</strong> {stats.commentsCount}</p>
                 </div>
             ) : (
                 <div>Pas de statistiques.</div>

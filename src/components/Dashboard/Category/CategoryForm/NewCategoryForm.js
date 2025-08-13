@@ -24,7 +24,7 @@ function NewCategoryForm({handleCategoryAdded}) {
     <div>
         <form onSubmit={handleSubmit(onSubmit)}>
             <Controller name="name" control={control} defaultValue="" render={({ field }) => (<CategoryNameInput {...field} />)} errorMessage={errors.name?.message} rules={{ required: "Nom de la catégorie requis" }}/>
-            <button type="submit" className="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded-md hover:bg-purple-700 transition-colors">
+            <button type="submit" className="w-full bg-primary text-white font-bold py-2 px-4 rounded-md hover:bg-purple-700 transition-colors">
                 Créer la catégorie
             </button>
         </form>

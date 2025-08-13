@@ -13,7 +13,7 @@ function DashboardPage() {
                 
                 <div className="flex space-x-4 mb-4">
                     {tabs.map(tab => (
-                        <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-2 ${activeTab === tab.id ? 'bg-purple-500 text-white' : 'bg-gray-200'}`}>
+                        <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-2 ${activeTab === tab.id ? 'bg-primary text-white' : 'bg-gray-200'}`}>
                             {tab.label}
                         </button>
                     ))}

@@ -5,7 +5,7 @@ import SearchBar from '../common/Articles/SearchBar.js';
 import './HomePage.css';
 import { useAuth } from '../context/AuthContext';
 import FilterArticle from '../components/Article/FilterArticle.js';
-import InfiniteScrollComponent from '../common/UI/InfiniteScroll.js';
+import InfiniteScrollComponent from '../common/UI/infiniteScroll.js';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
 import { checkHasMore } from '../utils/helpers/checkHasMore.js';
 
@@ -53,9 +53,14 @@ function HomePage({ type }) {
     return (
         <div className="container mx-auto px-4 min-h-screen">
             <div className="text-center my-16">
-                <h1 className="font-inkstream font-bold text-primary mb-4 relative">
-                    <span className="block">Inkstream</span>
-                    <span className="block h-1 bg-primary mx-auto mt-2"></span>
+                <h1 className="mb-8 relative max-w-md mx-auto text-center">
+                    <span className="font-inkstream block font-extrabold text-[2.5rem] text-[#7a6bfc] drop-shadow-md">
+                        La malle
+                    </span>
+                    <span className="block mt-1 text-gray-700 italic text-xl tracking-wide">
+                        "Des sourires, des plaisirs et des sens"
+                    </span>
+                    <span className="block h-1  bg-gradient-to-r from-[#7a6bfc] to-[#a6d947] rounded-full mx-auto mt-4 shadow-lg"></span>
                 </h1>
             </div>
             <div className='flex justify-center items-center'>
@@ -63,11 +68,16 @@ function HomePage({ type }) {
                 <FilterArticle onCategoryChange={handleCategoryChange}/>
             </div>
             <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={articleLength} hasMore={hasMore}>
-                <ul>
+                {/* <ul>
                     {articles.map((article, index) => (
                         <ArticleCard key={index} article={article}/>
                     ))}
-                </ul>
+                </ul> */}
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                    {articles.map(article => (
+                        <ArticleCard key={article._id} article={article} />
+                    ))}
+                </div>
             </InfiniteScrollComponent>
             {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
         </div>

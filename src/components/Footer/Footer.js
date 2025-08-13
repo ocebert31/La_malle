@@ -4,7 +4,7 @@ import { socialMediaLinks } from '../../utils/constants/socialMediaLinks';
 
 function Footer() {
     const handleContactClick = () => {
-        window.location.href = 'mailto:inkstream.app@gmail.com';
+        window.location.href = 'mailto:lamalle@gmail.com';
     };
 
     return (
@@ -17,7 +17,7 @@ function Footer() {
                 )}
             </div>
             <p className='text-sm'>
-                &copy; {new Date().getFullYear()} Inkstream. Tous droits réservés.
+                &copy; {new Date().getFullYear()} La malle. Tous droits réservés.
             </p>
             <button onClick={handleContactClick} className='mt-2 p-2 bg-secondary text-white rounded hover:bg-primary hover:text-white transition-colors duration-300'>
                 Contactez-nous
