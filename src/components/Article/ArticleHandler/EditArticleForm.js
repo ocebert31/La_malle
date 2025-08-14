@@ -11,9 +11,10 @@ import TagManager from '../../../common/Articles/TagManager';
 import CategorySelector from '../../../common/Articles/CategorySelector';
 import EditActions from '../../../common/UI/EditActions';
 import ErrorAlert from '../../Notifications/ErrorAlert';
+import PriceInput from '../../../common/Articles/PriceInput';
 
 function EditArticleForm({ article, setArticle, cancelEdit }) {
-    const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues: { title: article.title, content: article.content, tags: article.tags, categoryId: article.categoryId ,image: null } });
+    const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues: { title: article.title, content: article.content, tags: article.tags, categoryId: article.categoryId, price: article.price || '' ,image: null } });
     const { token } = useAuth(); 
     const [showErrorAlert, setShowErrorAlert] = useState("");
 
@@ -37,6 +38,7 @@ function EditArticleForm({ article, setArticle, cancelEdit }) {
                     <Controller name="content" control={control} render={({ field }) => (<ContentEditor {...field} errorMessage={errors.content?.message}/>)} rules={{ required: "Contenu requis" }}/>
                     <Controller name="tags" control={control} render={({ field }) => (<TagManager {...field}/>)}/>
                     <Controller name="categoryId" control={control} render={({ field }) => ( <CategorySelector {...field} errors={errors.categoryId} rules={{ required: "Catégorie requise" }}/>)}/>
+                    <Controller name="price" control={control} render={({ field }) => (<PriceInput {...field} errorMessage={errors.price?.message}/>)} rules={{required: "Prix requis", min: { value: 1, message: "Le prix ne peut pas être négatif ou de zéro" }}}/>
                     <Controller name="image" control={control} render={({ field: { onChange } }) => (<ImageUploader onChange={file => onChange(file)} errorMessage={errors.image?.message}/>)}/>
                     <EditActions cancelEdit={cancelEdit}></EditActions>
                 </form>

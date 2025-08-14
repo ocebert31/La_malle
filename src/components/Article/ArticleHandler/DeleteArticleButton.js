@@ -14,7 +14,7 @@ function DeleteArticleButton({ id }) {
     const handleDelete = async () => {
         try {
             await deleteArticle(id, token);
-            navigate('/');
+            navigate('/services');
         } catch (error) {
             setShowErrorAlert("Erreur lors de la suppression de la préstation.")
         }

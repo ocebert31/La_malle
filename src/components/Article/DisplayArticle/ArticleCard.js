@@ -1,44 +1,44 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import './ArticleCard.css';
 import Audio from '../ArticleAudio';
-import { formatLongDate } from "../../../utils/helpers/date";
 
 function ArticleCard({ article }) {
     return (
-        <div className="flex flex-col md:flex-row bg-white m-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4 md:p-6">
-            <div className="flex-1 p-2 md:p-6">
-                <h5 className="py-2 text-lg md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{article.title}</h5>
-                <div className='flex items-center'>
-                    <span className='pr-1'>Par</span>
-                    <span className="text-primary py-4 pr-1 dark:text-white font-bold">{article.pseudo}</span>
-                    <p className='text-xs md:text-base text-primary'>le {formatLongDate(article)}</p>
-                </div>
-                <p className="text-base md:text-3xl font-semibold text-gray-700 dark:text-gray-400 text-container" dangerouslySetInnerHTML={{ __html: article.content || '<p>No description available.</p>' }}></p>
-                <div className='flex py-3'>
-                    {article.tags && article.tags.map((tag, index) => (
-                        <div key={index} className="flex items-center justify-center w-4/5 md:w-auto px-2 py-2 text-base md:text-lg font-medium text-primary rounded-3xl">#{tag}</div>
-                    ))}
-                </div>
-                
-                <div className='flex flex-col md:flex-row gap-2 md:gap-4'>
-                    <Audio article={article} />
-                    <a href={`/articles/${article._id}`} className="flex items-center justify-center w-4/5 md:w-auto px-4 py-2 text-xs md:text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary focus:ring-4 focus:ring-primary-300 transition-colors">
-                        <span className="mr-2">Lire la suite</span>
-                        <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
-                    </a>
-                </div>
-            </div>
-            <div className="w-full md:w-2/5 flex-shrink-0 relative overflow-hidden rounded-lg aspect-[4/3]">
-            <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover"/>
-                <span className="text-xs absolute top-2 md:right-2 md:text-xl bg-primary text-white rounded-full px-2 py-1">
+        <div className="flex flex-col md:flex-row bg-gray-50 dark:bg-gray-900 rounded-xl shadow-xl overflow-hidden m-6 hover:shadow-2xl transition-shadow duration-300">
+            <div className="relative w-full md:w-2/5 h-64 md:h-auto">
+                <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
+                <span className="absolute bottom-3 left-3 bg-secondary text-white font-bold px-3 py-1 rounded-full shadow-md">
+                    {article.price} €
+                </span>
+                <span className="absolute top-3 right-3 bg-primary text-white font-bold px-3 py-1 rounded-full shadow-md">
                     {article.categoryName}
                 </span>
+            </div>
+            <div className="flex-1 p-6 flex flex-col justify-between">
+                <div>
+                    <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-3">{article.title}</h2>
+                    <p className="text-gray-700 dark:text-gray-300 text-base md:text-lg mb-4 line-clamp-4" 
+                       dangerouslySetInnerHTML={{ __html: article.content || '<p>No description available.</p>' }}>
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        {article.tags && article.tags.map((tag, index) => (
+                            <span key={index} className="text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full text-sm font-medium">
+                                #{tag}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+                <div className="flex flex-col md:flex-row gap-3 mt-2">
+                    <Audio article={article} />
+                    <a href={`/articles/${article._id}`}  className="flex items-center justify-center w-4/5 md:w-auto px-4 py-2 text-xs md:text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary focus:ring-4 focus:ring-primary-300 transition-colors">
+                        Lire la suite
+                        <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-2" />
+                    </a>
+                </div>
             </div>
         </div>
     );
 }
 
 export default ArticleCard;
-

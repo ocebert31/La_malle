@@ -68,11 +68,6 @@ function HomePage({ type }) {
                 <FilterArticle onCategoryChange={handleCategoryChange}/>
             </div>
             <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={articleLength} hasMore={hasMore}>
-                {/* <ul>
-                    {articles.map((article, index) => (
-                        <ArticleCard key={index} article={article}/>
-                    ))}
-                </ul> */}
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                     {articles.map(article => (
                         <ArticleCard key={article._id} article={article} />

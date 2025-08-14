@@ -11,6 +11,7 @@ import './NewArticlePage.css';
 import TagManager from '../common/Articles/TagManager';
 import CategorySelector from '../common/Articles/CategorySelector';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
+import PriceInput from '../common/Articles/PriceInput';
 
 function NewArticlePage() {
     const { control, handleSubmit, formState: { errors } } = useForm();
@@ -21,7 +22,7 @@ function NewArticlePage() {
     const onSubmit = async (data) => {
         try {
             await createArticles(formDataBuilder(data), token);
-            navigate('/');
+            navigate('/services');
         } catch {
             setShowErrorAlert("Erreur lors de la création de la préstation")
         }
@@ -36,6 +37,7 @@ function NewArticlePage() {
                     <Controller name="content" control={control} defaultValue="" render={({ field }) => (<ContentEditor {...field} errorMessage={errors.content?.message} />)} rules={{ required: "Contenu requis" }}/>
                     <Controller name="tags" control={control} defaultValue='' render={({ field }) => (<TagManager {...field}/>)}/>
                     <Controller name="categoryId" control={control} defaultValue="" rules={{ required: "Catégorie requise" }} render={({ field }) => ( <CategorySelector {...field} errors={errors.category}/>)}/>
+                    <Controller name="price" control={control} defaultValue="" rules={{required: "Prix requis", min: { value: 1, message: "Le prix ne peut pas être négatif" }}} render={({ field }) => (<PriceInput {...field} errorMessage={errors.price?.message} />)}/>
                     <Controller name="image" control={control} defaultValue="" render={({ field }) => (<ImageUploader {...field} errorMessage={errors.image?.message} />)} rules={{ required: "Image requise" }}/>
                     <div className="flex justify-center">
                         <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition-colors duration-300">
