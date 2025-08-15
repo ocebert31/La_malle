@@ -17,6 +17,7 @@ import RoleRoute from './RoleRoute.js';
 import AuthenticatedRoute  from './AuthenticatedRoute.js';
 import ErrorAlert from '../components/Notifications/ErrorAlert.js';
 import AboutMe from '../pages/AboutMe.js';
+import ContactForm from '../pages/ContactPage.js';
 
 function RouterComponent() {
     const location = useLocation();
@@ -54,6 +55,7 @@ function RouterComponent() {
                 <Route path="/request-reset-password" element={<AuthenticatedRoute  element={ResetPasswordPage} hasToken={false}/>} />
                 <Route path="/form-reset-password/:token" element={<ResetPasswordFormPage/>}/>
                 <Route path="/dashboard" element={<RoleRoute element={DashboardPage} requiredRoles={['admin']} />} />
+                <Route path="/contact" element={<ContactForm/>} />
             </Routes>
             {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
         </div>

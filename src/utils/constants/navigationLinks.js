@@ -1,4 +1,4 @@
-import { faGear, faPenToSquare, faStar, faHouse, faTableColumns, faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faPenToSquare, faStar, faHouse, faTableColumns, faHandshake, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 export const navigationLinks = (user) => {
     return [
@@ -8,5 +8,6 @@ export const navigationLinks = (user) => {
         { to: '/articles/new', label: 'Ajouter une préstation', icon: faPenToSquare, show: user && user.role !== 'reader' },
         { to: '/dashboard', label: 'Dashboard', icon: faTableColumns, show: user && user.role === 'admin' },
         { to: '/favorites', label: 'Favoris', icon: faStar },
+        { to: '/contact', label: 'Contact', icon: faPhone },
     ]
 };
