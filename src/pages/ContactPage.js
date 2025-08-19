@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import FormInput from "../common/Contact/FormInput";
 import { useAuth } from "../context/AuthContext";
-import { createContact } from '../services/contactService';
+import { createRequest } from '../services/contactService';
 import SuccessAlert from "../components/Notifications/SuccessAlert";
 import ErrorAlert from "../components/Notifications/ErrorAlert";
 
@@ -21,7 +21,7 @@ const onSubmit = async (data) => {
         return;
     }
     try {
-        await createContact(data, token);
+        await createRequest(data, token);
         setShowSuccessAlert("Votre demande a bien été envoyée !");
         setShowErrorAlert(""); 
             reset({

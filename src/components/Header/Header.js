@@ -38,8 +38,9 @@ function Header() {
                     </button>
                 ) : (
                     <div>
-                        <Link to='/registration' className='text-white hover:text-secondary font-semibold transition-colors duration-300 pr-2'>Inscription</Link>
-                        <Link to='/login' className='text-white hover:text-secondary font-semibold transition-colors duration-300 pl-2'>Connexion</Link>
+                        <Link to='/registration' className='text-white hover:text-primary font-semibold transition-colors duration-300 pr-2'>Inscription</Link>
+                        <Link to='/login' className='text-white hover:text-primary font-semibold transition-colors duration-300 pl-2'>Connexion</Link>
+                        <Link to='/services' className='text-white hover:text-primary font-semibold transition-colors duration-300 pl-2'>Voir les préstations</Link>
                     </div>
                 )}
             </nav>

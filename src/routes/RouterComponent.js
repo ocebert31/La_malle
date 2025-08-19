@@ -35,7 +35,7 @@ function RouterComponent() {
             const userData = await getUserData(token);
             updateUser(userData)
         } catch {
-            setShowErrorAlert('Erreur lors de la récupération de vos données utilisateur')
+            setShowErrorAlert('Erreur lors de la récupération de vos données utilisateur. Veuillez vous reconnecter')
         }
     };
 

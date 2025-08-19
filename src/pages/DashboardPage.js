@@ -3,9 +3,10 @@ import ListCategory from '../components/Dashboard/Category/ListCategory.js';
 import Statistic from '../components/Dashboard/Statistic/Statistic.js';
 import tabs from '../utils/constants/tabs';
 import UserList from '../components/Dashboard/UserList/UserList.js';
+import GetAllRequest from '../components/Dashboard/Request/GetAllRequest.js';
 
 function DashboardPage() {
-    const [activeTab, setActiveTab] = useState('users');
+    const [activeTab, setActiveTab] = useState('request');
 
     return (
         <div className='bg-gray-100 min-h-screen font-montserrat'>
@@ -18,6 +19,7 @@ function DashboardPage() {
                         </button>
                     ))}
                 </div>
+                {activeTab === 'request' && (<GetAllRequest/>)}
                 {activeTab === 'users' && (<UserList/>)}
                 {activeTab === 'category' && (<ListCategory/>)}
                 {activeTab === 'stat' && (<Statistic/>)}
