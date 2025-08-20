@@ -53,19 +53,19 @@ function TagManager({ value = [], onChange }) {
 
     return (
         <div>
-            <label htmlFor='tags' className="block text-sm font-medium text-gray-700">Tags :</label>
-            <div className="mt-1 flex items-center border border-gray-300 rounded-md shadow-sm px-3 py-2">
+            <label htmlFor='tags' className="block text-sm font-medium text-gray-700 mb-1">Tags :</label>
+            <div className="mt-1 flex flex-wrap items-center border border-gray-300 rounded-md shadow-sm px-3 py-2 gap-2">
                 {tags.map((tag, index) => (
-                    <span key={index} className="bg-primary text-white text-sm px-2 py-1 rounded-full mr-2 flex items-center">
+                    <span key={index} className="bg-primary text-white text-sm px-2 py-1 rounded-full flex items-center">
                         {tag}
                         <button onClick={() => handleRemoveTag(index)} className="ml-2 text-xs text-white">x</button>
                     </span>
                 ))}
                 {tags.length < 5 && (
-                    <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Ajouter un tag" className="outline-none flex-grow text-sm"/>
+                    <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Ajouter un tag" className="outline-none flex-grow min-w-[100px] text-sm"/>
                 )}
             </div>
-            {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert('')}/>)}
+            {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert('')} />)}
         </div>
     );
 }

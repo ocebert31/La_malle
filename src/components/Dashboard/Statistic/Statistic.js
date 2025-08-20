@@ -21,23 +21,35 @@ export default function Statistiques() {
         fetchStats();
     }, [token]); 
 
-
-  return (
-    <div className="pt-10">
-        <div className="w-full h-96 bg-white rounded-2xl shadow p-4">
-            <h2 className="text-xl font-bold mb-4">📊 Évolution Mensuelle des Demandes et Prestations</h2>
+ return (
+    <div className="pt-10 px-4 sm:px-6 lg:px-8">
+        <div className="w-full h-96 bg-white rounded-2xl shadow p-4 flex flex-col">
+            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-4 text-center sm:text-left">
+                📊 Évolution Mensuelle des Demandes et Prestations
+            </h2>
+            <div className="flex-1">
             <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={data}>
+                <BarChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 30 }}>
                     <XAxis dataKey="mois" />
                     <YAxis />
                     <Tooltip />
-                    <Legend />
                     <Bar dataKey="demandes" fill="#7a6bfc" name="Demandes reçues" />
                     <Bar dataKey="prestations" fill="#a6d947" name="Prestations acceptées" />
                 </BarChart>
             </ResponsiveContainer>
-            {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
+            </div>
+            <div className="pt-4 flex justify-center space-x-6">
+                <div className="flex items-center space-x-2">
+                    <div className="w-4 h-4 bg-primary rounded-sm"></div>
+                    <span className="text-sm font-medium">Demandes reçues</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <div className="w-4 h-4 bg-secondary rounded-sm"></div>
+                    <span className="text-sm font-medium">Prestations acceptées</span>
+                </div>
+            </div>
         </div>
+        {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
     </div>
   );
 }

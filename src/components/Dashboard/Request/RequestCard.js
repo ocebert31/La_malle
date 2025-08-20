@@ -1,24 +1,26 @@
 import { formatLongDate } from "../../../utils/helpers/date";
 import InfoLineRequest from "./InfoLineRequest";
 import StatusSelect from "./StatusSelect";
-import "./RequestCard.css"; 
+import "./RequestCard.css";
 import RequestDescription from "./RequestDescription";
 
 function RequestCard({ request, setRequests }) {
   return (
-    <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
-        <div className="flex justify-between items-center mb-3">
-            <h2 className="text-2xl font-semibold text-[#7a6bfc]">
+    <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-4 sm:p-6 hover:shadow-xl transition-all duration-300 w-full max-w-xl mx-auto">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3 mb-4">
+            <h2 className="text-lg sm:text-xl font-semibold text-[#7a6bfc] break-words">
                 {request.firstName} {request.name}
             </h2>
+            <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
             {request.urgence && (
-                <span className="bg-[#a6d947] text-white text-xs font-bold px-3 py-1 rounded-full">
-                    {request.urgence}
+                <span className="bg-[#a6d947] text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded-full whitespace-nowrap">
+                {request.urgence}
                 </span>
             )}
             <StatusSelect request={request} setRequests={setRequests} />
+            </div>
         </div>
-        <div className="space-y-1 text-gray-600 mb-3">
+        <div className="space-y-1 sm:space-y-2 text-gray-600 text-sm sm:text-base mb-4">
             <InfoLineRequest label="Demande faite le" value={formatLongDate(request)} />
             <InfoLineRequest label="Email" value={request.email} />
             <InfoLineRequest label="Téléphone" value={request.phone} />
@@ -33,10 +35,9 @@ function RequestCard({ request, setRequests }) {
                     year: "numeric",
                     })
                 : "Non précisée"
-            }
-            />
+            }/>
         </div>
-        <RequestDescription request={request}></RequestDescription>
+        <RequestDescription request={request} />
     </div>
   );
 }

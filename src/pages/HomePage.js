@@ -54,16 +54,16 @@ function HomePage({ type }) {
         <div className="container mx-auto px-4 min-h-screen">
             <div className="text-center my-16">
                 <h1 className="mb-8 relative max-w-md mx-auto text-center">
-                    <span className="font-inkstream block font-extrabold text-[2.5rem] text-[#7a6bfc] drop-shadow-md">
+                    <span className="block font-extrabold text-5xl sm:text-6xl md:text-7xl text-[#7a6bfc] drop-shadow-md">
                         La malle
                     </span>
-                    <span className="block mt-1 text-gray-700 italic text-xl tracking-wide">
+                    <span className="block mt-2 text-gray-700 italic text-sm sm:text-base md:text-lg lg:text-xl tracking-wide">
                         "Des sourires, des plaisirs et des sens"
                     </span>
                     <span className="block h-1  bg-gradient-to-r from-[#7a6bfc] to-[#a6d947] rounded-full mx-auto mt-4 shadow-lg"></span>
                 </h1>
             </div>
-            <div className='flex justify-center items-center'>
+            <div className='flex flex-col sm:flex-row justify-center items-center gap-4 mb-6'>
                 <SearchBar handleSearchQueryChange={handleSearchQueryChange}/>
                 <FilterArticle onCategoryChange={handleCategoryChange}/>
             </div>

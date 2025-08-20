@@ -100,22 +100,26 @@ function Vote({upvotes, downvotes, userVote, subject, setIsHidden, type}) {
 
     return (
         <div className="flex items-center">
-            <button onClick={() => handleVote('upvote')} className="px-2 py-2 flex items-center text-gray-600 hover:text-primary transition-colors duration-150" aria-label="Upvote">
-                {type === 'article' ? ( 
-                    <FontAwesomeIcon icon={faHeart} className={`text-2xl sm:text-3xl md:text-4xl ${userVoteType === 'upvote' ? 'text-primary' : ''}`} />
-                    ) : (
-                    <FontAwesomeIcon icon={faThumbsUp} className={`w-5 h-5 ${userVoteType === 'upvote' ? 'text-primary' : ''}`} />
-                )}
-                <span className="ml-2">{upVotes}</span>
-            </button>
-            <button onClick={() => handleVote('downvote')} className="px-2 py-2 flex items-center text-gray-600 hover:text-secondary transition-colors duration-150" aria-label="Downvote">
-                {type === 'comment' ? (
-                    <FontAwesomeIcon icon={faThumbsDown} className={`w-5 h-5 ${userVoteType === 'downvote' ? 'text-secondary' : ''}`} />
-                ) : (
-                    <FontAwesomeIcon icon={faHeartCrack} className={`text-2xl sm:text-3xl md:text-4xl ${userVoteType === 'downvote' ? 'text-secondary' : ''}`} />
-                )}
-                <span className="ml-2">{downVotes}</span>
-            </button>
+            {token && (
+                <>
+                    <button onClick={() => handleVote('upvote')} className="px-2 py-2 flex items-center text-gray-600 hover:text-primary transition-colors duration-150" aria-label="Upvote">
+                        {type === 'article' ? ( 
+                            <FontAwesomeIcon icon={faHeart} className={`text-2xl sm:text-3xl md:text-4xl ${userVoteType === 'upvote' ? 'text-primary' : ''}`} />
+                            ) : (
+                            <FontAwesomeIcon icon={faThumbsUp} className={`w-5 h-5 ${userVoteType === 'upvote' ? 'text-primary' : ''}`} />
+                        )}
+                        <span className="ml-2">{upVotes}</span>
+                    </button>
+                    <button onClick={() => handleVote('downvote')} className="px-2 py-2 flex items-center text-gray-600 hover:text-secondary transition-colors duration-150" aria-label="Downvote">
+                        {type === 'comment' ? (
+                            <FontAwesomeIcon icon={faThumbsDown} className={`w-5 h-5 ${userVoteType === 'downvote' ? 'text-secondary' : ''}`} />
+                        ) : (
+                            <FontAwesomeIcon icon={faHeartCrack} className={`text-2xl sm:text-3xl md:text-4xl ${userVoteType === 'downvote' ? 'text-secondary' : ''}`} />
+                        )}
+                        <span className="ml-2">{downVotes}</span>
+                    </button>
+                </>
+             )} 
             {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
         </div> 
     )

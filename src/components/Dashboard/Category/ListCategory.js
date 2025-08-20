@@ -50,17 +50,19 @@ function ListCategory() {
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
             <h2 className="text-xl font-bold mb-4">Créer une nouvelle catégorie</h2>
             {categories.map((category) => (
-                <div key={category._id}>
+                <div key={category._id} className="flex items-center space-x-2">
                     {isEditing === category._id ? (
-                        <EditCategoryButton category={category} handleCategoryUpdated={handleCategoryUpdated} editCategory={editCategory} />
+                        <EditCategoryButton category={category} handleCategoryUpdated={handleCategoryUpdated} editCategory={editCategory}/>
                     ) : (
-                        <div className='flex items-center'>
+                        <>
                             <DeleteCategoryButton category={category} handleCategoryDelete={handleCategoryDelete}/>
-                            <p>{category.name}</p>
+                            <p className="truncate max-w-xs" title={category.name}>
+                                {category.name}
+                            </p>
                             <button onClick={() => editCategory(category._id)} className="p-2 text-blue-500 hover:text-blue-700 transition-colors duration-150" aria-label="Modifier la catégorie">
                                 <FontAwesomeIcon icon={faPen} />
                             </button>
-                        </div>
+                        </>
                     )}
                 </div>
             ))}

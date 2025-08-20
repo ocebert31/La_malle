@@ -49,7 +49,7 @@ function ArticlePage() {
     return (
         <div className='bg-gray-100 min-h-screen'>
             <div className="container mx-auto px-4 py-8">
-                {isAuthor(user, article) && (
+                {isAuthor(user, article) && user.role === "author" || user.role === "admin"  && (
                     <div className="flex justify-center space-x-4 mb-4">
                         <DeleteArticleButton id={article._id} />
                         <EditArticleButton editArticle={editArticle} isEditing={isEditing}/>

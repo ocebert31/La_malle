@@ -8,7 +8,7 @@ function CommentActions({comment, commentState, isEditing, setIsEditing, setIsHi
     const { user } = useAuth();
 
     return(
-        <div className="flex items-center gap-4">
+           <div className="flex items-center gap-4 med:flex-col">
             <Vote upvotes={commentState.upvotes} downvotes={commentState.downvotes} userVote={commentState.userVote} subject={commentState} setIsHidden={setIsHidden} type='comment'/>
             {isAuthor(user, comment) && comment.content !== 'ce commentaire a été supprimé' && !comment.deletedAt && (
                 <div className='flex items-center gap-2'>

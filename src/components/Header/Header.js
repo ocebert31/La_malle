@@ -33,15 +33,15 @@ function Header() {
             </Link>
             <nav className='text-center md:flex items-center justify-center space-x-4'>
                 {token ? (
-                    <button onClick={toggleMenu} className='text-white hover:text-secondary font-semibold transition-colors duration-300'>
+                    <button onClick={toggleMenu} className='text-white hover:text-primary font-semibold transition-colors duration-300 max-md:pt-5'>
                         <FontAwesomeIcon icon={faBars} className='size-6' />
                     </button>
                 ) : (
-                    <div>
-                        <Link to='/registration' className='text-white hover:text-primary font-semibold transition-colors duration-300 pr-2'>Inscription</Link>
-                        <Link to='/login' className='text-white hover:text-primary font-semibold transition-colors duration-300 pl-2'>Connexion</Link>
-                        <Link to='/services' className='text-white hover:text-primary font-semibold transition-colors duration-300 pl-2'>Voir les préstations</Link>
-                    </div>
+                        <div className="flex flex-row gap-2 flex-wrap xs:flex-col xs:gap-1 justify-center max-md:pt-5">
+                        <Link to='/registration' className='text-white hover:text-primary font-semibold transition-colors duration-300'>Inscription</Link>
+                        <Link to='/login' className='text-white hover:text-primary font-semibold transition-colors duration-300'>Connexion</Link>
+                        <Link to='/services' className='text-white hover:text-primary font-semibold transition-colors duration-300'>Les préstations</Link>
+                        </div>
                 )}
             </nav>
             {showMenu && <SideBarMenu onClose={handleLinkClick} onLogout={closeConnexionAndNav} />}

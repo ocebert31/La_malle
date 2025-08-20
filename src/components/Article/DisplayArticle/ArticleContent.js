@@ -20,41 +20,41 @@ function ArticleContent({ article }) {
   );
 
   return (
-    <div className="w-full">
+    <div className="w-full px-4">
       <div className="flex justify-end mt-8">
-        <Link to="/services" className="flex items-center gap-2 text-primary font-semibold hover:underline pb-10">
+        <Link to="/services" className="flex items-center gap-2 text-primary font-semibold hover:underline pb-6 text-sm md:text-base">
           Découvrir nos services
           <FontAwesomeIcon icon={faArrowRight} />
         </Link>
       </div>
       {article.imageUrl && (
-        <div className="w-full h-[800px] overflow-hidden">
-          <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover"/>
+        <div className="w-full h-64 sm:h-96 md:h-[500px] lg:h-[600px] xl:h-[800px] overflow-hidden rounded-lg">
+          <img src={article.imageUrl} alt={article.title}  className="w-full h-full object-cover"/>
         </div>
       )}
-      <div className="mx-auto px-4 md:px-0">
-        <h1 className="text-4xl md:text-5xl font-bold mt-8 leading-tight">
+      <div className="mx-auto  mt-6 md:mt-10">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
           {article.title}
         </h1>
         {article.price && (
-          <div className="text-xl font-bold text-primary mt-2">
+          <div className="text-lg sm:text-xl md:text-2xl font-bold text-primary mt-2">
             {article.price} €
           </div>
         )}
-        <div className="flex flex-wrap items-center gap-3 mt-4 text-sm text-gray-500">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-4 text-xs sm:text-sm text-gray-500">
           {article.categoryName && (
             <span className="uppercase tracking-wide">{article.categoryName}</span>
           )}
           {article.tags?.map((tag, index) => (
-            <span key={index} className="px-2 py-0.5 bg-gray-200 text-gray-700 rounded-full text-xs">
+            <span key={index} className="px-2 py-0.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-full text-xs sm:text-sm">
               {tag}
             </span>
           ))}
         </div>
-        <div className="prose prose-lg dark:prose-invert mt-8">
-          {parse(sanitizedContent)}
+        <div className="prose prose-sm sm:prose-base md:prose-lg lg:prose-xl dark:prose-invert mt-6 sm:mt-8 md:mt-10">
+          {parse(sanitizedContent || '<p>No content available.</p>')}
         </div>
-        <div className="flex justify-between items-center mt-12 border-t border-gray-200 pt-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mt-8 md:mt-12 border-t border-gray-200 dark:border-gray-700 pt-4 md:pt-6 gap-4 md:gap-0">
           <div className="flex gap-4">
             <FavoriteArticleButton article={article} />
             <ShareArticle article={article} />
