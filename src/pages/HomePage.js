@@ -28,7 +28,7 @@ function HomePage({ type }) {
                 setArticleLength(result.length);
                 checkHasMore(result, limit, setHasMore)
             } catch {
-                setShowErrorAlert("Erreur lors de la récupération des articles.");
+                setShowErrorAlert("Erreur lors de la récupération des préstations.");
             }
         };
         loadArticles();
