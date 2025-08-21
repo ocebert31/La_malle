@@ -14,6 +14,7 @@ function UserList() {
   const [showErrorAlert, setShowErrorAlert] = useState("");
   const { token } = useAuth();
   const [limit] = useState(10);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setUsers([]);
@@ -24,11 +25,14 @@ function UserList() {
   useEffect(() => {
     const loadUsers = async () => {
       try {
+        setLoading(true);
         const result = await getUsers(searchQuery, page, limit, token);
         setUsers((prevUsers) => page === 1 ? result.users : [...prevUsers, ...result.users]);
         checkHasMore(result, limit, setHasMore);
       } catch {
         setShowErrorAlert("Erreur lors du chargement des utilisateurs");
+      } finally {
+        setLoading(false);
       }
     };
     loadUsers();
@@ -61,6 +65,15 @@ function UserList() {
   return (
     <div className="px-3 sm:px-6 lg:px-12 py-4">
         <SearchBar handleSearchQueryChange={handleSearchQueryChange} />
+        {loading && users.length === 0  ? (
+          <div className="flex justify-center items-center py-6">
+            <div className="w-10 h-10 border-4 border-t-primary border-gray-300 rounded-full animate-spin"></div>
+          </div>
+        ) : !loading && users.length === 0 ? (
+          <p className="text-gray-600 text-center text-lg mt-10">
+            Aucun utilisateur pour l'instant.
+          </p>
+        ) : (
         <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={users.length} hasMore={hasMore}>
             <ul className="space-y-4">
                 {users.map((user) => (
@@ -78,6 +91,7 @@ function UserList() {
                 ))}
             </ul>
         </InfiniteScrollComponent>
+        )}
         {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
     </div>
   );

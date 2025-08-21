@@ -19,6 +19,7 @@ function GetAllRequest() {
     const [limit] = useState(10);
     const [urgency, setUrgency] = useState('');
     const [status, setStatus] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {        
         setRequests([]); 
@@ -29,11 +30,14 @@ function GetAllRequest() {
     useEffect(() => {
         const loadRequests = async () => {
             try {
+                setLoading(true);
                 const fetchedRequests = await getRequest(searchQuery, page, limit, urgency, status, token);
                 setRequests(prevRequests => page === 1 ? fetchedRequests.requests : [...prevRequests, ...fetchedRequests.requests]);
                 checkHasMore(fetchedRequests, limit, setHasMore);
             } catch {
                 setShowErrorAlert("Erreur lors de la récupération des demandes");
+            } finally {
+                setLoading(false);
             }
         };
         loadRequests();
@@ -55,7 +59,11 @@ function GetAllRequest() {
             <p className="text-center text-gray-500 mb-8">
                 Vous avez {requests.length} demande{requests.length > 1 ? "s" : ""}
             </p>
-            {requests.length === 0 ? (
+            {loading && requests.length === 0  ? (
+                <div className="flex justify-center items-center py-6">
+                    <div className="w-10 h-10 border-4 border-t-primary border-gray-300 rounded-full animate-spin"></div>
+                </div>
+            ) : !loading && requests.length === 0 ? (
                 <p className="text-gray-600 text-center text-lg mt-10">
                 Aucune demande pour l’instant.
                 </p>

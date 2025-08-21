@@ -19,19 +19,23 @@ function HomePage({ type }) {
     const [limit] = useState(20);
     const [hasMore, setHasMore] = useState(true);
     const [showErrorAlert, setShowErrorAlert] = useState("");
-    
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        const loadArticles = async () => {
-            try {
-                const result = await getArticles(searchQuery, page, limit, type, token, selectedCategory);
-                setArticles(prevArticles => page === 1 ? result : [...prevArticles, ...result]);
-                setArticleLength(result.length);
-                checkHasMore(result, limit, setHasMore)
-            } catch {
-                setShowErrorAlert("Erreur lors de la récupération des préstations.");
-            }
-        };
-        loadArticles();
+    const loadArticles = async () => {
+        try {
+            setLoading(true);
+            const result = await getArticles(searchQuery, page, limit, type, token, selectedCategory);
+            setArticles(prev => page === 1 ? result : [...prev, ...result]);
+            setArticleLength(result.length);
+            checkHasMore(result, limit, setHasMore);
+        } catch {
+            setShowErrorAlert("Erreur lors de la récupération des prestations.");
+        } finally {
+            setLoading(false);
+        }
+    };
+    loadArticles();
     }, [searchQuery, page, limit, type, token, selectedCategory]);
 
     useEffect(() => {
@@ -67,13 +71,22 @@ function HomePage({ type }) {
                 <SearchBar handleSearchQueryChange={handleSearchQueryChange}/>
                 <FilterArticle onCategoryChange={handleCategoryChange}/>
             </div>
+            {loading && articles.length === 0  ? (
+                <div className="flex justify-center items-center py-6">
+                    <div className="w-10 h-10 border-4 border-t-primary border-gray-300 rounded-full animate-spin"></div>
+                </div>
+            ) : !loading && articles.length === 0 ? (
+                <div className="flex items-center justify-center p-4 text-gray-600 italic">
+                    Aucune prestation affichée pour le moment
+                </div>
+            ) : (
             <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={articleLength} hasMore={hasMore}>
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                     {articles.map(article => (
                         <ArticleCard key={article._id} article={article} />
                     ))}
                 </div>
-            </InfiniteScrollComponent>
+            </InfiniteScrollComponent>)}
             {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
         </div>
     );

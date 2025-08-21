@@ -13,14 +13,18 @@ function ListCategory() {
     const [categories, setCategories] = useState([]);
     const [isEditing, setIsEditing] = useState(null);
     const [showErrorAlert, setShowErrorAlert] = useState("");
+    const [loading, setLoading] = useState(true);
     
     useEffect(() => {
         const loadArticles = async () => {
             try {
+                setLoading(true);
                 const fetchedCategories = await getCategories(token);
                 setCategories(fetchedCategories);
             } catch {
                 setShowErrorAlert("Erreur lors de la récupération des catégories");
+            } finally {
+                setLoading(false);
             }
         };
         loadArticles();
@@ -49,7 +53,15 @@ function ListCategory() {
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
             <h2 className="text-xl font-bold mb-4">Créer une nouvelle catégorie</h2>
-            {categories.map((category) => (
+            {loading && categories.length === 0  ? (
+            <div className="flex justify-center items-center py-6">
+                <div className="w-10 h-10 border-4 border-t-primary border-gray-300 rounded-full animate-spin"></div>
+            </div>
+            ) : !loading && categories.length === 0 ? (
+            <p className="text-gray-600 text-center text-lg mt-10 pb-5">
+                Aucune catégorie pour l'instant.
+            </p>
+            ) : (categories.map((category) => (
                 <div key={category._id} className="flex items-center space-x-2">
                     {isEditing === category._id ? (
                         <EditCategoryButton category={category} handleCategoryUpdated={handleCategoryUpdated} editCategory={editCategory}/>
@@ -65,7 +77,7 @@ function ListCategory() {
                         </>
                     )}
                 </div>
-            ))}
+            )))}
             <NewCategoryForm handleCategoryAdded={handleCategoryAdded}/>
             {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
         </div>
