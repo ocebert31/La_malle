@@ -29,12 +29,12 @@ function Header() {
     return (
         <header className='background text-white md:flex items-center justify-between p-4 shadow-md'>
             <Link to='/' className='flex justify-center' onClick={handleLinkClick}>
-                <img src={logo} alt="Logo" className='w-32 h-auto' />
+                <img src={logo} alt="Logo de la Malle" className='w-32 h-auto' />
             </Link>
             <nav className='text-center md:flex items-center justify-center space-x-4'>
                 {token ? (
-                    <button onClick={toggleMenu} className='text-white hover:text-primary font-semibold transition-colors duration-300 max-md:pt-5'>
-                        <FontAwesomeIcon icon={faBars} className='size-6' />
+                    <button aria-label="Menu de la Malle" onClick={toggleMenu} className='text-white hover:text-primary font-semibold transition-colors duration-300 max-md:pt-5'>
+                        <FontAwesomeIcon icon={faBars} className='size-6'/>
                     </button>
                 ) : (
                         <div className="flex flex-row gap-2 flex-wrap xs:flex-col xs:gap-1 justify-center max-md:pt-5">

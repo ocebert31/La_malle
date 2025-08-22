@@ -9,7 +9,7 @@ function Footer() {
         <footer className='background text-white p-4 text-center'>
             <div className='flex justify-center space-x-4 mb-4'>
                 {socialMediaLinks().map((link) => 
-                    <a href={link.href} target='_blank' rel='noopener noreferrer' className='text-white hover:text-secondary transition-colors duration-300'>
+                    <a href={link.href} target='_blank' aria-label={link.aria} rel='noopener noreferrer' className='text-white hover:text-secondary transition-colors duration-300'>
                         <FontAwesomeIcon icon={link.icon} />
                     </a>
                 )}

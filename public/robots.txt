@@ -1,3 +1,8 @@
-# https://www.robotstxt.org/robotstxt.html
+# Autoriser tous les robots à indexer tout le site
 User-agent: *
-Disallow:
+Allow: /
+
+# Bloquer certaines pages sensibles
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /articles/new

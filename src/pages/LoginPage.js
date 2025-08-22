@@ -21,18 +21,20 @@ function LoginPage() {
             const { user, token } = await postSession(data);
             login(user, token);
             setShowSuccessAlert("Vous êtes désormais connectés");
+            setShowErrorAlert('');
             setTimeout(() => {
                 navigate('/');
             }, 2000);
         } catch {
             setShowErrorAlert("Erreur lors de la connexion");
+            setShowSuccessAlert('');
         }
     };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full p-7 max-w-md bg-white rounded-lg shadow-lg container-alignement-login">
-                <h2 className="text-2xl font-bold text-center text-primary mb-6">Connexion</h2>
+                <h1 className="text-2xl font-bold text-center text-primary mb-6">Connexion</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mx-5">
                     <EmailInput register={register} errors={errors} name='email' label='Email :'/>
                     <PasswordInput register={register} errors={errors} name='password' label='Mot de passe :'/>

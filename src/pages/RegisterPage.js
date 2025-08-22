@@ -23,9 +23,11 @@ function RegisterPage() {
         try {
             await postInscription(data);
             setShowSuccessAlert("Vous êtes désormais inscrit avec succès !");
+            setShowErrorAlert('');
             setIsConfirmationRegistration(true)
         } catch {
             setShowErrorAlert("Erreur lors de l'inscription. Veuillez réessayer.");
+            setShowSuccessAlert('');
         }
     };
 
@@ -34,7 +36,7 @@ function RegisterPage() {
             {!isConfirmationRegistration ? (
             <div className="flex items-center justify-center min-h-screen bg-gray-100">
                 <div className="w-full p-6 max-w-md bg-white rounded-lg shadow-lg container-alignement-registration">
-                    <h2 className="text-2xl font-bold text-center text-primary mb-6">Inscription</h2>
+                    <h1 className="text-2xl font-bold text-center text-primary mb-6">Inscription</h1>
                     <div className='flex justify-center'>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 style-form">
                             <EmailInput register={register} errors={errors} name='email' label='Email :'/>

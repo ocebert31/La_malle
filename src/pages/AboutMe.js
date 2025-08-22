@@ -123,7 +123,7 @@
 // export default AboutMe;
 
 //2e proposition de design
-import animateur from "../assets/animateur.png";
+import animateur from "../assets/animateur.webp";
 import { useState, useEffect } from "react";
 
 function AboutMe() {
@@ -153,8 +153,10 @@ function AboutMe() {
             <div className="relative mb-12 flex flex-col md:flex-row md:even:flex-row-reverse items-center">
                 <div className="md:w-1/3 flex items-center justify-center p-4">
                     <img
+                     width="192"
+                    height="192"
                     src={animateur}
-                    alt="Animateur"
+                    alt="Animateur pour les séniors"
                     className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg hover:scale-105 transition-transform duration-500"
                     />
                 </div>

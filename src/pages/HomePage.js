@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { getArticles } from '../services/articleService';
 import ArticleCard from '../components/Article/DisplayArticle/ArticleCard.js';
 import SearchBar from '../common/Articles/SearchBar.js';
-import './HomePage.css';
 import { useAuth } from '../context/AuthContext';
 import FilterArticle from '../components/Article/FilterArticle.js';
 import InfiniteScrollComponent from '../common/UI/infiniteScroll.js';

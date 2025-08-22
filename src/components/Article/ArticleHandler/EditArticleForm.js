@@ -6,7 +6,6 @@ import TitleInput from '../../../common/Articles/TitleInput';
 import ContentEditor from '../../../common/Articles/ContentEditor';
 import ImageUploader from '../../../common/Articles/ImageUploader';
 import { useAuth } from "../../../context/AuthContext";
-import './EditArticleForm.css';
 import TagManager from '../../../common/Articles/TagManager';
 import CategorySelector from '../../../common/Articles/CategorySelector';
 import EditActions from '../../../common/UI/EditActions';

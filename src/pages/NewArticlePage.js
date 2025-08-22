@@ -31,7 +31,7 @@ function NewArticlePage() {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full p-6 max-w-6xl bg-white rounded-lg shadow-lg container-alignement-new-article">
-                <h2 className="text-2xl font-bold text-center text-primary mb-6">Publier une préstation</h2>
+                <h1 className="text-2xl font-bold text-center text-primary mb-6">Publier une préstation</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <Controller name="title" control={control} defaultValue="" render={({ field }) => (<TitleInput {...field} errorMessage={errors.title?.message} />)} rules={{ required: "Titre requis" }}/>
                     <Controller name="content" control={control} defaultValue="" render={({ field }) => (<ContentEditor {...field} errorMessage={errors.content?.message} />)} rules={{ required: "Contenu requis" }}/>

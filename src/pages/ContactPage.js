@@ -11,7 +11,7 @@ function ContactPage() {
     const [showSuccessAlert, setShowSuccessAlert] = useState('');
     const [showErrorAlert, setShowErrorAlert] = useState('');
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
-        defaultValues: { name: "", firstName: "", email: user.email, phone: "", typeRequest: "", desiredDate: "", urgence: "Moyenne", description: "", rgpd: false},
+        defaultValues: { name: "", firstName: "", email: user?.email || '', phone: "", typeRequest: "", desiredDate: "", urgence: "Moyenne", description: "", rgpd: false},
     })
 
     const onSubmit = async (data) => {
@@ -27,7 +27,7 @@ function ContactPage() {
                 reset({
                     name: "",
                     firstName: "",
-                    email:  user.email,
+                    email:  user?.email || '',
                     phone: "",
                     typeRequest: "",
                     desiredDate: "",
