@@ -3,11 +3,10 @@ import { updateEmail } from '../../../services/authenticationService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
-import EmailInput from '../../../common/Users/EmailInput';
 import { useAuth } from '../../../context/AuthContext';
-import PasswordInput from '../../../common/Users/PasswordInput';
 import SuccessAlert from '../../Notifications/SuccessAlert';
 import ErrorAlert from '../../Notifications/ErrorAlert';
+import FormInput from '../../../common/Contact/FormInput';
 
 function EmailForm() {
     const [showSuccessAlert, setShowSuccessAlert] = useState('');
@@ -35,8 +34,8 @@ function EmailForm() {
             {isOpen && (
                 <div className="mt-4 p-4 border border-gray-300 rounded-lg transition-all duration-300 ease-in-out transform origin-top scale-y-100" style={{ animation: 'slideDown 0.3s ease-in-out' }}>
                     <form onSubmit={handleSubmit(handleEmailUpdate)} className="space-y-4">
-                        <EmailInput register={register} errors={errors} name='newEmail' label='Nouvelle adresse mail :'/>
-                        <PasswordInput register={register} errors={errors} name='currentPassword' label='Mot de passe actuel :'/>
+                        <FormInput label="Nouvelle adresse mail :" name="newEmail" placeholder="lamalle2@gmail.com" register={register} rules={{ required: "L'email est requis" }} errors={errors}/>
+                        <FormInput label="Mot de passe actuel :" name="currentPassword" placeholder="p4ssw0rd" type="password" register={register} rules={{ required: "Le mot de passe est requis" }} errors={errors}/>
                         <button type="submit" className="w-full bg-primary text-white py-2 rounded-lg">Mettre à jour</button>
                     </form>
                 </div>

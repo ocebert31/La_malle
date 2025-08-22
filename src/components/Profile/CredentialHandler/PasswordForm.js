@@ -3,12 +3,11 @@ import { useAuth } from '../../../context/AuthContext';
 import { updatePassword } from '../../../services/authenticationService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown} from '@fortawesome/free-solid-svg-icons';
-import PasswordInput from '../../../common/Users/PasswordInput';
 import { useForm } from 'react-hook-form';
-import ConfirmPasswordInput from '../../../common/Users/ConfirmPasswordInput';
 import SuccessAlert from '../../Notifications/SuccessAlert';
 import ErrorAlert from '../../Notifications/ErrorAlert';
 import { confirmPasswordMatch } from '../../../utils/validators/confirmPasswordMatch';
+import FormInput from '../../../common/Contact/FormInput';
 
 function PasswordForm() {
     const { token } = useAuth();
@@ -39,9 +38,9 @@ function PasswordForm() {
             {isOpen && (
                 <div className="mt-4 p-4 border border-gray-300 rounded-lg transition-all duration-300 ease-in-out transform origin-top scale-y-100" style={{ animation: 'slideDown 0.3s ease-in-out' }}>
                     <form onSubmit={handleSubmit(handlePasswordChange)} className="space-y-4">
-                        <PasswordInput register={register} errors={errors} name='currentPassword' label='Mot de passe actuel:'/>
-                        <PasswordInput register={register} errors={errors} name='newPassword' label='Nouveau mot de passe:'/>
-                        <ConfirmPasswordInput register={register} errors={errors} name='confirmNewPassword' label='Confirmer le nouveau mot de passe :'/>
+                        <FormInput label="Mot de passe actuel :" name="currentPassword" placeholder="p4ssw0rd" type="password" register={register} rules={{ required: "Le mot de passe actuel est requis" }} errors={errors}/>
+                        <FormInput label="Nouveau mot de passe:" name="newPassword" placeholder="p4ssw0rd2" type="password" register={register} rules={{ required: "Le nouveau mot de passe est requis" }} errors={errors}/>
+                        <FormInput label="Confirmer le nouveau mot de passe :" name="confirmNewPassword" placeholder="p4ssw0rd2" type="password" register={register} rules={{ required: "La confirmation du nouveau mot de passe est requise" }} errors={errors}/>
                         {checkConfirmPassword && <p className="text-red-500 text-center mt-2">{checkConfirmPassword}</p>}
                         <button type="submit" className="w-full bg-primary text-white py-2 rounded-lg">Changer le mot de passe</button>
                     </form>

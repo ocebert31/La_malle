@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import EmailInput from '../common/Users/EmailInput';
 import { forgotPassword } from '../services/authenticationService';
 import SuccessAlert from '../components/Notifications/SuccessAlert';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
+import FormInput from '../common/Contact/FormInput';
 
 function ResetPasswordPage() {
     const [showSuccessAlert, setShowSuccessAlert] = useState('');
@@ -27,7 +27,7 @@ function ResetPasswordPage() {
                 <h1 className="text-2xl font-bold text-center text-primary mb-6">Récupération du mot de passe</h1>
                 <div className='flex justify-center'>
                     <form onSubmit={handleSubmit(sendEmail)} className="space-y-4 mx-5">
-                        <EmailInput register={register} errors={errors} name='email' label='Email :'/>
+                        <FormInput label="Email :" name="email" type="email" placeholder="Email" register={register} rules={{ required: "Email requis" }} errors={errors}/>
                         <button type="submit" className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition-colors duration-300">Récupération mot de passe</button>
                     </form>
                 </div>

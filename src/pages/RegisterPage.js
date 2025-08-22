@@ -1,14 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { postInscription } from '../services/authenticationService';
-import EmailInput from '../common/Users/EmailInput';
-import PasswordInput from '../common/Users/PasswordInput';
 import './RegisterPage.css';
 import { Link } from 'react-router-dom';
 import SuccessAlert from '../components/Notifications/SuccessAlert';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
-import React, { useState } from 'react';
-import ConfirmPasswordInput from '../common/Users/ConfirmPasswordInput';
+import { useState } from 'react';
 import { confirmPasswordMatch } from '../utils/validators/confirmPasswordMatch';
+import FormInput from '../common/Contact/FormInput';
 
 function RegisterPage() {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
@@ -39,9 +37,9 @@ function RegisterPage() {
                     <h1 className="text-2xl font-bold text-center text-primary mb-6">Inscription</h1>
                     <div className='flex justify-center'>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 style-form">
-                            <EmailInput register={register} errors={errors} name='email' label='Email :'/>
-                            <PasswordInput register={register} errors={errors} name='password' label='Mot de passe :'/>
-                            <ConfirmPasswordInput register={register} errors={errors} name='confirmPassword' label='Confirmer le mot de passe :'/>
+                            <FormInput label="Email :" name="email" placeholder="lamalle@gmail.com" register={register} rules={{ required: "L'email est requis" }} errors={errors}/>
+                            <FormInput label="Mot de passe :" name="password" placeholder="p4ssw0rd" type="password" register={register} rules={{ required: "Le mot de passe est requis" }} errors={errors}/>
+                            <FormInput label="Confirmer le mot de passe :" name="confirmPassword" placeholder="p4ssw0rd"  type="password" register={register} rules={{ required: "Confirmation du mot de passe requise" }} errors={errors}/>
                             {checkConfirmPassword && <p className="text-red-500 text-center mt-2">{checkConfirmPassword}</p>}
                             <button type="submit" className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition-colors duration-300">S'inscrire</button>
                             <Link to='/login' className="text-primary hover:text-secondary font-medium transition-colors duration-300 underline text-center">Déjà membre ?</Link>        
