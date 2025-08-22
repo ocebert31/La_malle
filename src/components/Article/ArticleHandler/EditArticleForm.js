@@ -1,49 +1,20 @@
-import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { updateArticle } from '../../../services/articleService';
-import { formDataBuilder } from '../../../utils/constants/formDataBuilder';
-import TitleInput from '../../../common/Articles/TitleInput';
-import ContentEditor from '../../../common/Articles/ContentEditor';
-import ImageUploader from '../../../common/Articles/ImageUploader';
+import { updateArticle } from "../../../services/articleService";
+import { formDataBuilder } from "../../../utils/constants/formDataBuilder";
 import { useAuth } from "../../../context/AuthContext";
-import TagManager from '../../../common/Articles/TagManager';
-import CategorySelector from '../../../common/Articles/CategorySelector';
-import EditActions from '../../../common/UI/EditActions';
-import ErrorAlert from '../../Notifications/ErrorAlert';
-import PriceInput from '../../../common/Articles/PriceInput';
+import ArticleForm from "../../../common/Articles/ArticleForm";
 
 function EditArticleForm({ article, setArticle, cancelEdit }) {
-    const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues: { title: article.title, content: article.content, tags: article.tags, categoryId: article.categoryId, price: article.price || '' ,image: null } });
-    const { token } = useAuth(); 
-    const [showErrorAlert, setShowErrorAlert] = useState("");
+    const { token } = useAuth();
 
-    const onSubmit = async (data) => {
-        try {
-            const formData = formDataBuilder(data);
-            const result = await updateArticle(article._id, formData, token);
-            setArticle(result.article);
-            cancelEdit();
-        } catch {
-            setShowErrorAlert("Erreur lors de l'édition de la préstation.");
-        }
+    const handleEdit = async (data) => {
+        const formData = formDataBuilder(data);
+        const result = await updateArticle(article._id, formData, token);
+        setArticle(result.article);
+        cancelEdit();
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full p-6 max-w-6xl bg-white rounded-lg shadow-lg container-alignement-article-edition">
-                <h2 className="text-2xl font-bold text-center text-primary mb-6">Édition de la préstation</h2>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <Controller name="title" control={control} render={({ field }) => (<TitleInput {...field} errorMessage={errors.title?.message}/>)} rules={{ required: "Titre requis" }}/>
-                    <Controller name="content" control={control} render={({ field }) => (<ContentEditor {...field} errorMessage={errors.content?.message}/>)} rules={{ required: "Contenu requis" }}/>
-                    <Controller name="tags" control={control} render={({ field }) => (<TagManager {...field}/>)}/>
-                    <Controller name="categoryId" control={control} render={({ field }) => ( <CategorySelector {...field} errors={errors.categoryId} rules={{ required: "Catégorie requise" }}/>)}/>
-                    <Controller name="price" control={control} render={({ field }) => (<PriceInput {...field} errorMessage={errors.price?.message}/>)} rules={{required: "Prix requis", min: { value: 1, message: "Le prix ne peut pas être négatif ou de zéro" }}}/>
-                    <Controller name="image" control={control} render={({ field: { onChange } }) => (<ImageUploader onChange={file => onChange(file)} errorMessage={errors.image?.message}/>)}/>
-                    <EditActions cancelEdit={cancelEdit}></EditActions>
-                </form>
-            </div>
-            {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
-        </div>
+        <ArticleForm initialValues={article} onSubmit={handleEdit} submitLabel="Mettre à jour" cancelEdit={cancelEdit} title="Édition de la préstation"/>
     );
 }
 
