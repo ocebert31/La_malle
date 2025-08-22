@@ -21,7 +21,7 @@ function FormInput({ label, name, register, rules, errors, type = "text", placeh
             ))}
         </select>
         ) : type === "textarea" ? (
-            <textarea {...register(name, rules)} id={name} placeholder={placeholder} rows={4} className="p-[12px] rounded-[8px] border border-secondary w-full"/>
+            <textarea {...register(name, rules)} id={name} placeholder={placeholder} rows={4}  cols="50" className="p-[12px] rounded-[8px] border border-secondary w-full"/>
         ) : type === "password" ? (
             <div className="relative">
                 <input {...register(name, rules)} id={name} type={visible ? "text" : "password"} placeholder={placeholder} className="p-[12px] rounded-[8px] border border-secondary w-full pr-10"/>

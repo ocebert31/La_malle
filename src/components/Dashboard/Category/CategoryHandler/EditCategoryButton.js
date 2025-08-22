@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import { updateCategory } from '../../../../services/categoryService';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useAuth } from '../../../../context/AuthContext';
-import ContentInput from '../../../../common/Comments/ContentInput';
 import EditActions from '../../../../common/UI/EditActions';
 import ErrorAlert from '../../../Notifications/ErrorAlert';
+import FormInput from '../../../../common/Contact/FormInput';
 
 function EditCategoryButton({ category, handleCategoryUpdated, editCategory }) {
     const { token } = useAuth(); 
     const [content, setContent] = useState(category.name);
-    const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues: { content } });
+    const { register, control, handleSubmit, formState: { errors } } = useForm({ defaultValues: { content } });
     const [showErrorAlert, setShowErrorAlert] = useState("");
 
     const onSubmit = async (data) => {
@@ -30,7 +30,7 @@ function EditCategoryButton({ category, handleCategoryUpdated, editCategory }) {
     return (
         <div className="p-4 border rounded-lg bg-gray-50 shadow-md">
             <form onSubmit={handleSubmit(onSubmit)} className="gap-4">
-                <Controller name="content" control={control} defaultValue={content} render={({ field }) => (<ContentInput {...field} errorMessage={errors.content?.message} />)} rules={{ required: "Contenu requis" }}/>
+                <FormInput label="Contenu" name="content" placeholder="Musique" type="textarea" register={register} rules={{ required: "Catégorie requise" }} errors={errors}/>
                 <EditActions cancelEdit={handleEditingEnd}/>
             </form> 
             {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}
