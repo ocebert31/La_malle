@@ -8,12 +8,12 @@ function RequestCard({ request, setRequests }) {
   return (
     <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-4 sm:p-6 hover:shadow-xl transition-all duration-300 w-full max-w-xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3 mb-4">
-            <h2 className="text-lg sm:text-xl font-semibold text-[#7a6bfc] break-words">
+            <h2 className="text-lg sm:text-xl font-semibold text-primary break-words">
                 {request.firstName} {request.name}
             </h2>
             <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
             {request.urgence && (
-                <span className="bg-[#a6d947] text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded-full whitespace-nowrap">
+                <span className="bg-secondary text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded-full whitespace-nowrap">
                 {request.urgence}
                 </span>
             )}

@@ -20,7 +20,7 @@ function RequestDescription({request}) {
                     {request.description}
                 </p>
                 {showPlus && (
-                <button className="absolute right-0 bottom-0 text-[#7a6bfc] font-bold" onClick={() => setShowModal(true)}>
+                <button className="absolute right-0 bottom-0 text-primary font-bold" onClick={() => setShowModal(true)}>
                     +
                 </button>
                 )}

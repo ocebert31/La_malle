@@ -53,7 +53,7 @@ function GetAllRequest() {
             <SearchBar handleSearchQueryChange={handleSearchQueryChange} />
             <UrgencyFilter setUrgency={setUrgency} urgency={urgency} />
             <StatusFilter setStatus={setStatus} status={status} />
-            <h2 className="text-4xl font-bold text-center mb-2 text-[#7a6bfc]">
+            <h2 className="text-4xl font-bold text-center mb-2 text-primary">
                 Liste des demandes
             </h2>
             <p className="text-center text-gray-500 mb-8">

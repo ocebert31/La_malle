@@ -55,6 +55,10 @@ function RegisterPage() {
                     <div className="p-8 bg-white rounded-lg shadow-lg text-center max-w-md style-p">
                         <h2 className="text-2xl font-bold text-primary mb-4">Inscription réussie !</h2>
                         <p className="text-lg text-gray-700 mb-6">Veuillez consulter votre boîte mail pour confirmer votre inscription.</p>
+                         <p className="text-sm text-gray-500 italic">
+                            Et bonne nouvelle 🎉&nbsp;: un petit pseudo a été préparé spécialement pour vous,  
+                            mélange savoureux d’un adjectif, d’une couleur et d’un animal 🐦🎨✨
+                        </p>
                     </div>
                 </div>
             )}

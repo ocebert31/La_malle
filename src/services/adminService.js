@@ -9,4 +9,8 @@ async function updateUserRole(userId, newRole, token) {
     return fetchRequest(`/admin/${userId}`, { method: 'PUT', body: {role: newRole}, token });
 }
 
-export { getUsers, updateUserRole };
+async function deleteUser(id, token) {
+    return fetchRequest(`/admin/${id}`, { method: 'DELETE', token });
+}
+
+export { getUsers, updateUserRole, deleteUser };

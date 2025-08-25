@@ -49,8 +49,8 @@ export default function Statistiques() {
                         <XAxis dataKey="mois" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="demandes" fill="#7a6bfc" name="Demandes reçues" />
-                        <Bar dataKey="prestations" fill="#a6d947" name="Prestations acceptées" />
+                        <Bar dataKey="demandes" fill="#5941FF" name="Demandes reçues" />
+                        <Bar dataKey="prestations" fill="#FF915D" name="Prestations acceptées" />
                     </BarChart>
                 </ResponsiveContainer>
             </div>

@@ -43,7 +43,7 @@ function LoginPage() {
                         <Link to='/request-reset-password' className="block mt-4 text-primary hover:text-secondary font-medium transition-colors duration-300 underline text-center">Mot de passe oublié ?</Link>
                     </div>
                 </form>
-         
+                
             </div>
             {showSuccessAlert && (<SuccessAlert message={showSuccessAlert} onClose={() => setShowSuccessAlert(false)}/>)}
             {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}

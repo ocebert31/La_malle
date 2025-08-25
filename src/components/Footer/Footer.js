@@ -17,6 +17,14 @@ function Footer() {
             <p className='text-sm'>
                 &copy; {new Date().getFullYear()} La malle. Tous droits réservés.
             </p>
+            <div className="py-2 flex justify-center space-x-6 text-sm">
+                <p>📞 06 80 28 15 56</p>
+                <p>
+                    📧 <a href="mailto:lamalle@gmail.fr" className="underline hover:text-secondary">
+                        lamalle@gmail.fr
+                    </a>
+                </p>
+            </div>
             <Link to="/contact">
                 <button className='mt-2 p-2 bg-secondary text-white rounded hover:bg-primary hover:text-white transition-colors duration-300'>
                     Contactez-nous
