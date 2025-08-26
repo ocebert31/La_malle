@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import TitleInput from "../Articles/TitleInput";
 import ContentEditor from "../Articles/ContentEditor";
-import ImageUploader from "../Articles/ImageUploader";
 import TagManager from "../Articles/TagManager";
 import CategorySelector from "../Articles/CategorySelector";
-import PriceInput from "../Articles/PriceInput";
 import ErrorAlert from "../../components/Notifications/ErrorAlert";
+import FormInput from "../Contact/FormInput";
 
 function ArticleForm({ initialValues = {}, onSubmit, submitLabel, cancelEdit, title }) {
     const [showErrorAlert, setShowErrorAlert] = useState("");
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { register, control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
         title: initialValues.title || "",
         content: initialValues.content || "",
@@ -36,12 +34,12 @@ function ArticleForm({ initialValues = {}, onSubmit, submitLabel, cancelEdit, ti
             {title}
             </h1>
             <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
-                <Controller name="title" control={control} rules={{ required: "Titre requis" }} render={({ field }) => <TitleInput {...field} errorMessage={errors.title?.message} />}/>
-                <Controller name="content" control={control} rules={{ required: "Contenu requis" }}render={({ field }) => <ContentEditor {...field} errorMessage={errors.content?.message} />}/>
+                <FormInput label="Titre :" name="title" placeholder="Votre titre" register={register} rules={{ required: "Le titre est requis" }} errors={errors}/>
+                <Controller name="content" control={control} rules={{ required: "Contenu requis" }}render={({ field }) => <ContentEditor {...field} errorMessage={errors.content?.message} />}/>  
                 <Controller name="tags" control={control} render={({ field }) => <TagManager {...field} />}/>
                 <Controller name="categoryId" control={control} rules={{ required: "Catégorie requise" }}render={({ field }) => (<CategorySelector {...field} errors={errors.categoryId} />)}/>
-                <Controller name="price" control={control} rules={{ required: "Prix requis", min: { value: 1, message: "Le prix doit être positif" } }}render={({ field }) => <PriceInput {...field} errorMessage={errors.price?.message} />}/>
-                <Controller name="image" control={control} render={({ field: { onChange } }) => (<ImageUploader onChange={file => onChange(file)} errorMessage={errors.image?.message} />)}/>
+                <FormInput label="Prix (€) :" name="price" placeholder="Votre prix" type="number" register={register} step="1" min="0" rules={{ required: "Le prix est requis" }} erros={errors}/>
+                <Controller name="image" control={control} rules={{ required: "Une image est obligatoire" }} render={({ field }) => (<FormInput type="file" name="image" label="Image" value={field.value} onChange={field.onChange} errors={errors}/>)}/>
                 <div className="flex justify-center gap-4">
                     <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition">
                         {submitLabel}

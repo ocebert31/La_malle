@@ -54,7 +54,7 @@ function TagManager({ value = [], onChange }) {
     return (
         <div>
             <label htmlFor='tags' className="block text-sm font-medium text-gray-700 mb-1">Tags :</label>
-            <div className="mt-1 flex flex-wrap items-center border border-gray-300 rounded-md shadow-sm px-3 py-2 gap-2">
+            <div className="mt-1 flex flex-wrap items-center border border-gray-300 rounded-md shadow-sm px-3 py-2 gap-2 border-secondary">
                 {tags.map((tag, index) => (
                     <span key={index} className="bg-primary text-white text-sm px-2 py-1 rounded-full flex items-center">
                         {tag}
