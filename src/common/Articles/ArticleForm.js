@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import ContentEditor from "../Articles/ContentEditor";
-import TagManager from "../Articles/TagManager";
+import ContentEditor from "../../components/Article/ContentEditor";
+import TagManager from "../../components/Article/TagManager";
 import CategorySelector from "../Articles/CategorySelector";
 import ErrorAlert from "../../components/Notifications/ErrorAlert";
 import FormInput from "../Contact/FormInput";
+import EditActions from "../UI/EditActions";
 
 function ArticleForm({ initialValues = {}, onSubmit, submitLabel, cancelEdit, title }) {
     const [showErrorAlert, setShowErrorAlert] = useState("");
@@ -41,14 +42,7 @@ function ArticleForm({ initialValues = {}, onSubmit, submitLabel, cancelEdit, ti
                 <FormInput label="Prix (€) :" name="price" placeholder="Votre prix" type="number" register={register} step="1" min="0" rules={{ required: "Le prix est requis" }} erros={errors}/>
                 <Controller name="image" control={control} rules={{ required: "Une image est obligatoire" }} render={({ field }) => (<FormInput type="file" name="image" label="Image" value={field.value} onChange={field.onChange} errors={errors}/>)}/>
                 <div className="flex justify-center gap-4">
-                    <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition">
-                        {submitLabel}
-                    </button>
-                    {cancelEdit && (
-                    <button type="button" onClick={cancelEdit} className="bg-gray-300 px-4 py-2 rounded-md">
-                        Annuler
-                    </button>
-                    )}
+                    <EditActions cancelEdit={cancelEdit} submitLabel={submitLabel}/>
                 </div>
             </form>
         </div>

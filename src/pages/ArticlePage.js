@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import DeleteArticleButton from '../components/Article/ArticleHandler/DeleteArticleButton';
 import EditArticleButton from '../components/Article/ArticleHandler/EditArticleButton';
 import ArticleContent from '../components/Article/DisplayArticle/ArticleContent';
-import EditArticleForm from '../components/Article/ArticleHandler/EditArticleForm';
+import EditArticleForm from '../components/Article/EditArticleForm';
 import { useAuth } from "../context/AuthContext";
 import CommentList from '../components/Comment/CommentList';
 import ErrorAlert from '../components/Notifications/ErrorAlert';

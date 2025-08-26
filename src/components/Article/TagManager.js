@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ErrorAlert from '../../components/Notifications/ErrorAlert';
+import ErrorAlert from '../Notifications/ErrorAlert';
 
 function TagManager({ value = [], onChange }) {
     const [tagInput, setTagInput] = useState('');
