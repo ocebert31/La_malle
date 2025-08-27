@@ -1,7 +1,7 @@
 import { fetchRequest } from "./apiRequest";
 
-async function createCategories(data, token) {
-    return fetchRequest(`/categories`, { method: 'POST', body: data, token });
+async function createCategory(name, token) {
+    return fetchRequest(`/categories`, { method: 'POST', body: name, token });
 }
 
 async function getCategories() {
@@ -16,4 +16,4 @@ async function updateCategory(id, name, token) {
     return fetchRequest(`/categories/${id}`, { method: 'PUT', body: {name}, token });
 }
 
-export {createCategories, getCategories, deleteCategory, updateCategory}
+export {createCategory, getCategories, deleteCategory, updateCategory}

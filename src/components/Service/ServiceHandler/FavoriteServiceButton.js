@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { favoriteArticle } from '../../../services/favoritesService'; 
+import { createFavoriteService } from '../../../services/favoritesService'; 
 import { useAuth } from '../../../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'; 
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 import ErrorAlert from '../../Notifications/ErrorAlert';
 
-function FavoriteArticleButton({ article }) {
+function FavoriteServiceButton({ service }) {
     const { token } = useAuth();
-    const [favorite, setFavorite] = useState(article.favorite);
+    const [favorite, setFavorite] = useState(service.favorite);
     const [showErrorAlert, setShowErrorAlert] = useState("");
 
     useEffect(() => {
-        setFavorite(article.favorite);
-    }, [article.favorite]);
+        setFavorite(service.favorite);
+    }, [service.favorite]);
 
     const handleFavorite = async () => {
         try {
-            const result = await favoriteArticle(article._id, token);
+            const result = await createFavoriteService(service._id, token);
             setFavorite(result.favorite);
         } catch {
             setShowErrorAlert("Erreur lors de l'ajout de la préstation dans la liste des favoris");
@@ -36,4 +36,4 @@ function FavoriteArticleButton({ article }) {
     );
 }
 
-export default FavoriteArticleButton;
+export default FavoriteServiceButton;

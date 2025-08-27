@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { vote } from '../../services/voteService'; 
+import { createVote } from '../../services/voteService'; 
 import { useAuth } from "../../context/AuthContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faHeartCrack, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
@@ -22,23 +22,23 @@ function Vote({upvotes, downvotes, userVote, subject, setIsHidden, type}) {
 
     const handleVote = async (voteType) => {
         try {
-            voteForArticle(voteType);
+            voteForService(voteType);
             voteForComment(voteType);
         } catch {
             setShowErrorAlert("Erreur lors de la création du vote.");
         }
     };
 
-    const voteForArticle = async (voteType) => {
-        if(type === 'article') {
-            const result = await vote({ articleId: subject._id, voteType }, token);
+    const voteForService = async (voteType) => {
+        if(type === 'service') {
+            const result = await createVote({ serviceId: subject._id, voteType }, token);
             onVoteDone(voteType, result);
         }
     }
 
     const voteForComment = async (voteType) => {
         if(type === 'comment') {
-            const result = await vote({ commentId: subject._id, voteType }, token);
+            const result = await createVote({ commentId: subject._id, voteType }, token);
             onVoteDone(voteType, result);
         }
     }
@@ -103,7 +103,7 @@ function Vote({upvotes, downvotes, userVote, subject, setIsHidden, type}) {
             {token && (
                 <>
                     <button onClick={() => handleVote('upvote')} className="px-2 py-2 flex items-center text-gray-600 hover:text-primary transition-colors duration-150" aria-label="Upvote">
-                        {type === 'article' ? ( 
+                        {type === 'service' ? ( 
                             <FontAwesomeIcon icon={faHeart} className={`text-2xl sm:text-3xl md:text-4xl ${userVoteType === 'upvote' ? 'text-primary' : ''}`} />
                             ) : (
                             <FontAwesomeIcon icon={faThumbsUp} className={`w-5 h-5 ${userVoteType === 'upvote' ? 'text-primary' : ''}`} />

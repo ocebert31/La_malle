@@ -1,11 +1,11 @@
 import { fetchRequest } from "./apiRequest";
 
-async function postInscription(data) {
-    return fetchRequest(`/auth/registration`, { method: 'POST', body: data });
+async function registration(infoUser) {
+    return fetchRequest(`/auth/registration`, { method: 'POST', body: infoUser });
 }
 
-async function postSession(data) {
-    return fetchRequest(`/auth/session`, { method: 'POST', body: data });
+async function session(infoUser) {
+    return fetchRequest(`/auth/session`, { method: 'POST', body: infoUser });
 }
 
 async function postConfirmation(token) {
@@ -28,7 +28,7 @@ async function forgotPassword(email) {
     return fetchRequest(`/auth/forgot-password`, { method: 'POST', body: { email } });
 }
 
-async function postResetPassword(token, newPassword, confirmNewPassword) {
+async function resetPassword(token, newPassword, confirmNewPassword) {
     return fetchRequest(`/auth/reset-password/${token}`, { method: 'POST', body: { newPassword, confirmNewPassword }, token });
 }
 
@@ -36,4 +36,4 @@ async function getUserData(token) {
     return fetchRequest(`/auth/userData`, { method: 'GET', token });
 }
 
-export {postInscription, postSession, postConfirmation, updateAvatarOptions, updateEmail, updatePassword, forgotPassword, postResetPassword, getUserData};
+export {registration, session, postConfirmation, updateAvatarOptions, updateEmail, updatePassword, forgotPassword, resetPassword, getUserData};

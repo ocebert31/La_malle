@@ -18,7 +18,7 @@ function NewReplyForm ({comment, typeForm, onReply}) {
     return(
         <div>
             {isReply ? (
-                <NewCommentForm articleId={comment.articleId} onAdded={handleReplyAdded} commentId={comment._id} setIsReply={setIsReply} comment={comment} typeForm={typeForm}/>
+                <NewCommentForm serviceId={comment.serviceId} onAdded={handleReplyAdded} commentId={comment._id} setIsReply={setIsReply} comment={comment} typeForm={typeForm}/>
             ) : ( token && (
                 <div>
                     {!comment.commentId &&

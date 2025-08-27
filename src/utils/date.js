@@ -1,8 +1,8 @@
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
-export const formatLongDate = (article) => {
-    return format(new Date(article.createdAt), 'd MMMM yyyy', { locale: fr })
+export const formatLongDate = (service) => {
+    return format(new Date(service.createdAt), 'd MMMM yyyy', { locale: fr })
 } 
 
 export const formatNumericDate = (date) => {

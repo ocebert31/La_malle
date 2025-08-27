@@ -1,7 +1,7 @@
 import Avatar from 'avataaars';
 import React, { useEffect, useState } from 'react';
 import defaultAvatarOptions from '../../../utils/constants/defaultAvatarOptions';
-import { formatNumericDate } from '../../../utils/helpers/date';
+import { formatNumericDate } from '../../../utils/date';
 
 function CommentAvatar({comment}) {
     const [avatarOptions, setAvatarOptions] = useState(defaultAvatarOptions);

@@ -2,7 +2,7 @@ import { faVolumeUp, faStop } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-function ArticleAudio({ article }) {
+function ServiceAudio({ service }) {
     const [isPaused] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [isGlobalSpeaking, setGlobalSpeaking] = useState(false);
@@ -70,7 +70,7 @@ function ArticleAudio({ article }) {
 
     return(
         <div className='flex items-center'>
-            <button onClick={() => readAloud(`${article.title} ${article.pseudo} ${article.content}`)} className="flex items-center justify-center w-32 px-4 py-2 text-xs md:text-sm font-medium text-white bg-secondary rounded-lg focus:ring-4 focus:ring-primary-300" disabled={isGlobalSpeaking && !isSpeaking}>
+            <button onClick={() => readAloud(`${service.title} ${service.pseudo} ${service.content}`)} className="flex items-center justify-center w-32 px-4 py-2 text-xs md:text-sm font-medium text-white bg-secondary rounded-lg focus:ring-4 focus:ring-primary-300" disabled={isGlobalSpeaking && !isSpeaking}>
                 <FontAwesomeIcon icon={faVolumeUp} className="w-4 h-4" />
                 <span className="ml-2">Lire</span>
             </button>
@@ -84,4 +84,4 @@ function ArticleAudio({ article }) {
     )
 }
 
-export default ArticleAudio;
+export default ServiceAudio;

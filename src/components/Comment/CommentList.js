@@ -6,9 +6,9 @@ import { useAuth } from '../../context/AuthContext';
 import defaultAvatarData from '../../utils/constants/defaultAvatarOptions';
 import InfiniteScrollComponent from '../../common/UI/infiniteScroll';
 import ErrorAlert from '../Notifications/ErrorAlert';
-import { checkHasMore } from '../../utils/helpers/checkHasMore';
+import { checkHasMore } from '../../utils/pagination';
 
-function CommentList({ articleId }) {
+function CommentList({ serviceId }) {
     const [comments, setComments] = useState([]);
     const { token, user } = useAuth();
     const [avatarOptions, setAvatarOptions] = useState(null);
@@ -20,7 +20,7 @@ function CommentList({ articleId }) {
     useEffect(() => {
         const loadComments = async () => {
             try {
-                const result = await getComments(articleId, token, page, limit);
+                const result = await getComments(serviceId, token, page, limit);
                 const commentsWithReplies = result.map(comment => ({
                     ...comment,
                     replies: comment.replies || []
@@ -44,7 +44,7 @@ function CommentList({ articleId }) {
         setComments([]);
         setPage(1);
         setHasMore(true);
-    }, [articleId]);
+    }, [serviceId]);
 
     const valueOfAvatarOptions = (user) => {
         if (!user || user.avatarOptions === undefined || (Object.keys(user.avatarOptions).length === 0)) {
@@ -116,7 +116,7 @@ function CommentList({ articleId }) {
     return (
         <div className="p-4 bg-gray-100 rounded-lg shadow-lg">
             <h3 className="text-2xl font-semibold text-primary mb-4">Commentaires</h3>
-            <NewCommentForm articleId={articleId} onAdded={handleCommentAdded} />
+            <NewCommentForm serviceId={serviceId} onAdded={handleCommentAdded} />
             <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={comments.length} hasMore={hasMore}>
                 <ul>
                     {comments.map(comment => (

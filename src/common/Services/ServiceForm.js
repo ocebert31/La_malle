@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import ContentEditor from "../../components/Article/ContentEditor";
-import TagManager from "../../components/Article/TagManager";
-import CategorySelector from "../Articles/CategorySelector";
+import ContentEditor from "../../components/Service/ContentEditor";
+import TagManager from "../../components/Service/TagManager";
+import CategorySelector from "./CategorySelector";
 import ErrorAlert from "../../components/Notifications/ErrorAlert";
 import FormInput from "../Contact/FormInput";
 import EditActions from "../UI/EditActions";
 
-function ArticleForm({ initialValues = {}, onSubmit, submitLabel, cancelEdit, title }) {
+function ServiceForm({ initialValues = {}, onSubmit, submitLabel, cancelEdit, title }) {
     const [showErrorAlert, setShowErrorAlert] = useState("");
     const { register, control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
-        title: initialValues.title || "",
-        content: initialValues.content || "",
-        tags: initialValues.tags || "",
-        categoryId: initialValues.categoryId || "",
-        price: initialValues.price || "",
-        image: null
+            title: initialValues.title || "",
+            content: initialValues.content || "",
+            tags: initialValues.tags || "",
+            categoryId: initialValues.categoryId || "",
+            price: initialValues.price || "",
+            image: null
         }
     });
 
@@ -53,4 +53,4 @@ function ArticleForm({ initialValues = {}, onSubmit, submitLabel, cancelEdit, ti
     );
 }
 
-export default ArticleForm;
+export default ServiceForm;

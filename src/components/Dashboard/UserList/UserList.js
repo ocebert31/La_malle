@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import InfiniteScrollComponent from "../../../common/UI/infiniteScroll";
 import { useAuth } from "../../../context/AuthContext";
-import { getUsers, updateUserRole, deleteUserByAdmin } from "../../../services/adminService";
-import SearchBar from "../../../common/Articles/SearchBar.js";
-import { checkHasMore } from "../../../utils/helpers/checkHasMore.js";
+import { getUsers, updateUserRole, deleteUser } from "../../../services/adminService";
+import SearchBar from "../../../common/Services/SearchBar.js";
+import { checkHasMore } from "../../../utils/pagination.js";
 import ErrorAlert from "../../Notifications/ErrorAlert.js";
 import DeleteUserButton from "./DeleteUserButton.js";
 import DeleteUserModal from "./DeleteUserModal.js";
-import { deleteUser } from "../../../services/adminService";
 
 function UserList() {
   const [users, setUsers] = useState([]);

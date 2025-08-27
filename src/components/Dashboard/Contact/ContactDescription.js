@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-function RequestDescription({request}) {
+function ContactDescription({contact}) {
     const [showModal, setShowModal] = useState(false);
     const [showPlus, setShowPlus] = useState(false);
     const descRef = useRef();
@@ -17,7 +17,7 @@ function RequestDescription({request}) {
             <div className="relative mt-3">
                 <span className="font-semibold text-primary">Description :</span>
                 <p ref={descRef} className="description-line-clamp">
-                    {request.description}
+                    {contact.description}
                 </p>
                 {showPlus && (
                 <button className="absolute right-0 bottom-0 text-primary font-bold" onClick={() => setShowModal(true)}>
@@ -32,7 +32,7 @@ function RequestDescription({request}) {
                             &times;
                         </button>
                         <h3 className="text-xl font-semibold mb-4">Description complète</h3>
-                        <p className="text-gray-700 whitespace-pre-line">{request.description}</p>
+                        <p className="text-gray-700 whitespace-pre-line">{contact.description}</p>
                     </div>
                 </div>
             )}
@@ -40,4 +40,4 @@ function RequestDescription({request}) {
     )
 }
 
-export default RequestDescription;
+export default ContactDescription;

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
-import { postComment } from '../../../services/commentService'; 
+import { createComment } from '../../../services/commentService'; 
 import { useAuth } from '../../../context/AuthContext';
 import GifSelector from './GifSelector';
 import ErrorAlert from '../../Notifications/ErrorAlert';
 
-function NewCommentForm({ articleId, onAdded, commentId, setIsReply, comment, typeForm}) {
+function NewCommentForm({ serviceId, onAdded, commentId, setIsReply, comment, typeForm}) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { token, user } = useAuth();
     const [showGifSelector, setShowGifSelector] = useState(false);
@@ -15,7 +15,7 @@ function NewCommentForm({ articleId, onAdded, commentId, setIsReply, comment, ty
 
     const onSubmit = async (data) => {
         try {
-            const result = await postComment(data.content, articleId, commentId, token);
+            const result = await createComment(data.content, serviceId, commentId, token);
             const comment = result.comment;
             reset();
             comment.pseudo = user.pseudo;
@@ -28,7 +28,7 @@ function NewCommentForm({ articleId, onAdded, commentId, setIsReply, comment, ty
     const handleGifSelect = async (gif) => {
         setShowGifSelector(false);
         try {
-            const result = await postComment(`giphy#${gif.images.original.url}`, articleId, commentId, token);
+            const result = await createComment(`giphy#${gif.images.original.url}`, serviceId, commentId, token);
             const comment = result.comment;
             comment.pseudo = user.pseudo;
             onAdded(comment);

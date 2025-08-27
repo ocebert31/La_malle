@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { getArticles } from '../services/articleService';
-import ArticleCard from '../components/Article/DisplayArticle/ArticleCard.js';
-import SearchBar from '../common/Articles/SearchBar.js';
-import { useAuth } from '../context/AuthContext';
-import FilterArticle from '../components/Article/FilterArticle.js';
+import { getServices } from '../services/serviceService.js';
+import ServiceCard from '../components/Service/DisplayService/ServiceCard.js';
+import SearchBar from '../common/Services/SearchBar.js.js';
+import { useAuth } from '../context/AuthContext.js';
+import FilterService from '../components/Service/FilterService.js';
 import InfiniteScrollComponent from '../common/UI/infiniteScroll.js';
-import ErrorAlert from '../components/Notifications/ErrorAlert';
-import { checkHasMore } from '../utils/helpers/checkHasMore.js';
+import ErrorAlert from '../components/Notifications/ErrorAlert.js';
+import { checkHasMore } from '../utils/pagination.js';
 
-function HomePage({ type }) {
+function ServiceListPage({ type }) {
     const { token } = useAuth();
-    const [articles, setArticles] = useState([]);
-    const [articleLength, setArticleLength] = useState(0);
+    const [services, setServices] = useState([]);
+    const [serviceLength, setServiceLength] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [page, setPage] = useState(1);
@@ -21,12 +21,12 @@ function HomePage({ type }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-    const loadArticles = async () => {
+    const loadServices = async () => {
         try {
             setLoading(true);
-            const result = await getArticles(searchQuery, page, limit, type, token, selectedCategory);
-            setArticles(prev => page === 1 ? result : [...prev, ...result]);
-            setArticleLength(result.length);
+            const result = await getServices(searchQuery, page, limit, type, token, selectedCategory);
+            setServices(prev => page === 1 ? result : [...prev, ...result]);
+            setServiceLength(result.length);
             checkHasMore(result, limit, setHasMore);
         } catch {
             setShowErrorAlert("Erreur lors de la récupération des prestations.");
@@ -34,11 +34,11 @@ function HomePage({ type }) {
             setLoading(false);
         }
     };
-    loadArticles();
+    loadServices();
     }, [searchQuery, page, limit, type, token, selectedCategory]);
 
     useEffect(() => {
-        setArticles([]);
+        setServices([]);
         setPage(1);
         setHasMore(true);
     }, [searchQuery, selectedCategory, type]);
@@ -68,21 +68,21 @@ function HomePage({ type }) {
             </div>
             <div className='flex flex-col sm:flex-row justify-center items-center gap-4 mb-6'>
                 <SearchBar handleSearchQueryChange={handleSearchQueryChange}/>
-                <FilterArticle onCategoryChange={handleCategoryChange}/>
+                <FilterService onCategoryChange={handleCategoryChange}/>
             </div>
-            {loading && articles.length === 0  ? (
+            {loading && services.length === 0  ? (
                 <div className="flex justify-center items-center py-6">
                     <div className="w-10 h-10 border-4 border-t-primary border-gray-300 rounded-full animate-spin"></div>
                 </div>
-            ) : !loading && articles.length === 0 ? (
+            ) : !loading && services.length === 0 ? (
                 <div className="flex items-center justify-center p-4 text-gray-600 italic">
                     Aucune prestation affichée pour le moment
                 </div>
             ) : (
-            <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={articleLength} hasMore={hasMore}>
+            <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={serviceLength} hasMore={hasMore}>
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-                    {articles.map(article => (
-                        <ArticleCard key={article._id} article={article} />
+                    {services.map(service => (
+                        <ServiceCard key={service._id} service={service} />
                     ))}
                 </div>
             </InfiniteScrollComponent>)}
@@ -91,4 +91,4 @@ function HomePage({ type }) {
     );
 }
 
-export default HomePage;
+export default ServiceListPage;

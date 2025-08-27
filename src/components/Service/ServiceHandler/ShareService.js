@@ -1,7 +1,6 @@
-import React from 'react';
 import { FaTwitter } from 'react-icons/fa';
 
-function ShareArticle ({ article }) {
+function ShareService ({ service }) {
     const url= process.env.REACT_APP_URL
 
     const stripHtml = (html) => {
@@ -17,12 +16,12 @@ function ShareArticle ({ article }) {
     };
 
     const shareOnTwitter = () => {
-        const plainTextContent = stripHtml(article.content);
+        const plainTextContent = stripHtml(service.content);
         const truncatedContent = truncateText(plainTextContent, 100);
         const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-            article.title + '\n\n' + 
+            service.title + '\n\n' + 
             truncatedContent + '\n\n' + 
-            `Lien de l'article: ${url}/articles/${article._id}`
+            `Lien du service: ${url}/services/${service._id}`
         )}`;      
         window.open(twitterShareUrl, '_blank', 'noopener,noreferrer');
     };
@@ -36,4 +35,4 @@ function ShareArticle ({ article }) {
     );
 };
 
-export default ShareArticle;
+export default ShareService;

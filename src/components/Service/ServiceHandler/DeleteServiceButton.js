@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { deleteArticle } from '../../../services/articleService'; 
+import { deleteService} from '../../../services/serviceService'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from "../../../context/AuthContext";
 import ErrorAlert from '../../Notifications/ErrorAlert';
 
-function DeleteArticleButton({ id }) {
+function DeleteServiceButton({ id }) {
     const navigate = useNavigate();
     const { token } = useAuth();
     const [showErrorAlert, setShowErrorAlert] = useState("");
 
     const handleDelete = async () => {
         try {
-            await deleteArticle(id, token);
+            await deleteService(id, token);
             navigate('/services');
         } catch (error) {
             setShowErrorAlert("Erreur lors de la suppression de la préstation.")
@@ -30,4 +30,4 @@ function DeleteArticleButton({ id }) {
     );
 };
 
-export default DeleteArticleButton;
+export default DeleteServiceButton;

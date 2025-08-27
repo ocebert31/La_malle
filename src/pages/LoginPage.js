@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { postSession } from '../services/authenticationService';
+import { session } from '../services/authenticationService';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './LoginPage.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SuccessAlert from '../components/Notifications/SuccessAlert';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
 import FormInput from '../common/Contact/FormInput';
@@ -17,7 +17,7 @@ function LoginPage() {
 
     const onSubmit = async (data) => {
         try {
-            const { user, token } = await postSession(data);
+            const { user, token } = await session(data);
             login(user, token);
             setShowSuccessAlert("Vous êtes désormais connectés");
             setShowErrorAlert('');

@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { getOneArticle } from '../services/articleService';
+import { getOneService } from '../services/serviceService';
 import { useParams } from 'react-router-dom';
-import DeleteArticleButton from '../components/Article/ArticleHandler/DeleteArticleButton';
-import EditArticleButton from '../components/Article/ArticleHandler/EditArticleButton';
-import ArticleContent from '../components/Article/DisplayArticle/ArticleContent';
-import EditArticleForm from '../components/Article/EditArticleForm';
+import DeleteServiceButton from '../components/Service/ServiceHandler/DeleteServiceButton';
+import EditServiceButton from '../components/Service/ServiceHandler/EditServiceButton';
+import ServiceContent from '../components/Service/DisplayService/ServiceContent';
+import EditServiceForm from '../components/Service/EditServiceForm';
 import { useAuth } from "../context/AuthContext";
 import CommentList from '../components/Comment/CommentList';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
-import { isAuthor } from '../utils/helpers/autorization';
+import { isAuthor } from '../utils/autorization';
 
-function ArticlePage() {
-    const [article, setArticle] = useState(null);
+function ServicePage() {
+    const [service, setService] = useState(null);
     const { id } = useParams();
     const [isEditing, setIsEditing] = useState(false);
     const { user, token } = useAuth();
     const [showErrorAlert, setShowErrorAlert] = useState("");
     
     useEffect(() => {
-        const loadArticle = async () => {
+        const loadService = async () => {
             try {
-                const result = await getOneArticle(id, token);
-                setArticle(result);
+                const result = await getOneService(id, token);
+                setService(result);
             } catch {
                 setShowErrorAlert("Erreur lors de la récupération de la préstation.");
             }
         };
-        loadArticle();
+        loadService();
     }, [id, token]);
 
-    const editArticle = () => {
+    const editService = () => {
         setIsEditing(true);
     };
 
@@ -37,7 +37,7 @@ function ArticlePage() {
         setIsEditing(false);
     };
 
-    if (!article) {
+    if (!service) {
         return  <div className="flex justify-center items-center min-h-screen bg-gray-100">
                     <div className="text-center">
                         <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-primary border-solid"></div>
@@ -49,18 +49,18 @@ function ArticlePage() {
     return (
         <div className='bg-gray-100 min-h-screen'>
             <div className="container mx-auto px-4 py-8">
-                 {isAuthor(user, article)  && (
+                 {isAuthor(user, service)  && (
                     <div className="flex justify-center space-x-4 mb-4">
-                        <DeleteArticleButton id={article._id} />
-                        <EditArticleButton editArticle={editArticle} isEditing={isEditing}/>
+                        <DeleteServiceButton id={service._id} />
+                        <EditServiceButton editService={editService} isEditing={isEditing}/>
                     </div>
                 )}
                 {isEditing ? (
-                    <EditArticleForm article={article} setArticle={setArticle} cancelEdit={cancelEdit}/>
+                    <EditServiceForm service={service} setService={setService} cancelEdit={cancelEdit}/>
                 ) : (
                     <div>
-                        <ArticleContent article={article}/>
-                        <CommentList articleId={article._id}/>
+                        <ServiceContent service={service}/>
+                        <CommentList serviceId={service._id}/>
                     </div>
                 )}
             </div>
@@ -69,4 +69,4 @@ function ArticlePage() {
     );
 }
 
-export default ArticlePage;
+export default ServicePage;

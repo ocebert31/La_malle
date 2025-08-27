@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.js';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from '../pages/HomePage.js';
-import NewArticlePage from '../pages/NewArticlePage.js';
-import ArticlePage from '../pages/ArticlePage.js';
+import ServiceListPage from '../pages/ServiceListPage.js';
+import NewServicePage from '../pages/NewServicePage.js';
+import ServicePage from '../pages/ServicePage.js';
 import RegisterPage from '../pages/RegisterPage.js';
 import LoginPage from '../pages/LoginPage.js';
 import ConfirmationEmailPage from '../pages/ConfirmationEmailPage.js';
@@ -16,7 +16,7 @@ import { getUserData } from '../services/authenticationService.js';
 import RoleRoute from './RoleRoute.js';
 import AuthenticatedRoute  from './AuthenticatedRoute.js';
 import ErrorAlert from '../components/Notifications/ErrorAlert.js';
-import AboutMe from '../pages/AboutMe.js';
+import BiographyPage from '../pages/BiographyPage.js';
 import ContactForm from '../pages/ContactPage.js';
 
 function RouterComponent() {
@@ -42,11 +42,11 @@ function RouterComponent() {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<AboutMe/>} />
-                <Route path="/services" element={<HomePage type='all' />} />
-                <Route path="/favorites" element={<HomePage type='favorites'/>} />
-                <Route path="/articles/:id" element={<ArticlePage />} />
-                <Route path="/articles/new" element={<RoleRoute element={NewArticlePage} requiredRoles={['author', 'admin']} />} />
+                <Route path="/" element={<BiographyPage/>} />
+                <Route path="/services" element={<ServiceListPage type='all' />} />
+                <Route path="/favorites" element={<ServiceListPage type='favorites'/>} />
+                <Route path="/services/:id" element={<ServicePage />} />
+                <Route path="/services/new" element={<RoleRoute element={NewServicePage} requiredRoles={['author', 'admin']} />} />
                 <Route path="/registration" element={<AuthenticatedRoute  element={RegisterPage} hasToken={false}/>} />
                 <Route path="/login" element={<AuthenticatedRoute  element={LoginPage} hasToken={false}/>} />
                 <Route path="/confirmation/:token" element={<ConfirmationEmailPage isEmailUpdate={false}/>}/>

@@ -1,9 +1,9 @@
 import { fetchRequest } from "./apiRequest";
 
-async function vote(vote, token) {
-    return fetchRequest(`/votes`, { method: 'POST', body: vote, token });
+async function createVote(infoVote, token) {
+    return fetchRequest(`/votes`, { method: 'POST', body: infoVote, token });
 }
 
-export {vote};
+export {createVote};
 
 

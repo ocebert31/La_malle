@@ -1,18 +1,18 @@
 import { useAuth } from '../../../context/AuthContext';
-import { updateStatusRequest } from "../../../services/contactService";
+import { updateStatusContact } from "../../../services/contactService";
 import SuccessAlert from '../../Notifications/SuccessAlert';
 import ErrorAlert from '../../Notifications/ErrorAlert';
 import React, { useState } from 'react';
 
-function StatusSelect({ request, setRequests }) {
+function StatusSelect({ contact, setContacts }) {
     const { token } = useAuth(); 
     const [showSuccessAlert, setShowSuccessAlert] = useState('');
     const [showErrorAlert, setShowErrorAlert] = useState('');
 
-    const handleStatusChange = async (requestId, newStatus) => {
+    const handleStatusChange = async (contactId, newStatus) => {
         try {
-            await updateStatusRequest(requestId, newStatus, token);
-            handleUserUpdated(requestId, newStatus)
+            await updateStatusContact(contactId, newStatus, token);
+            handleUserUpdated(contactId, newStatus)
             setShowSuccessAlert('Le status de la demande a bien été modifié');
             setShowErrorAlert('');
         } catch {
@@ -21,10 +21,10 @@ function StatusSelect({ request, setRequests }) {
         }
     };
 
-    const handleUserUpdated = (requestId, newStatus) => {
-        setRequests((prevRequests) =>
-            prevRequests.map((request) =>
-                request._id === requestId ? { ...request, status: newStatus } : request
+    const handleUserUpdated = (contactId, newStatus) => {
+        setContacts((prevContacts) =>
+            prevContacts.map((contact) =>
+                contact._id === contactId ? { ...contact, status: newStatus } : contact
             )
         );
     };
@@ -38,7 +38,7 @@ function StatusSelect({ request, setRequests }) {
 
     return (
         <div>
-            <select value={request.status} onChange={(e) => handleStatusChange(request._id, e.target.value)} className={`p-2 rounded-xl border-none focus:ring-2 focus:ring-[#7a6bfc] focus:outline-none ${statusColors[request.status]}`}>
+            <select value={contact.status} onChange={(e) => handleStatusChange(contact._id, e.target.value)} className={`p-2 rounded-xl border-none focus:ring-2 focus:ring-[#7a6bfc] focus:outline-none ${statusColors[contact.status]}`}>
                 <option value="En attente">En attente</option>
                 <option value="Acceptée">Acceptée</option>
                 <option value="Rejetée">Rejetée</option>

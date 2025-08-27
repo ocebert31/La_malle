@@ -16,7 +16,7 @@ function ListCategory() {
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
-        const loadArticles = async () => {
+        const loadServices = async () => {
             try {
                 setLoading(true);
                 const fetchedCategories = await getCategories(token);
@@ -27,7 +27,7 @@ function ListCategory() {
                 setLoading(false);
             }
         };
-        loadArticles();
+        loadServices();
     }, [token])
 
     const handleCategoryAdded = (newCategory) => {

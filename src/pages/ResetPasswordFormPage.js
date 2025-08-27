@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { postResetPassword } from '../services/authenticationService';
+import { resetPassword } from '../services/authenticationService';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import SuccessAlert from '../components/Notifications/SuccessAlert';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
-import { confirmPasswordMatch } from '../utils/validators/confirmPasswordMatch';
+import { confirmPasswordMatch } from '../utils/password';
 import FormInput from '../common/Contact/FormInput';
 
-function ResetPasswordForm() {
+function ResetPasswordFormPage() {
     const [showSuccessAlert, setShowSuccessAlert] = useState('');
     const [showErrorAlert, setShowErrorAlert] = useState('');
     const [checkConfirmPassword, setCheckConfirmPassword] = useState('');
@@ -18,7 +18,7 @@ function ResetPasswordForm() {
     const handlePasswordUpdate = async (data) => {
         confirmPasswordMatch(setCheckConfirmPassword, newPassword, confirmNewPassword);
         try {
-            await postResetPassword(token, data.newPassword, data.confirmNewPassword);
+            await resetPassword(token, data.newPassword, data.confirmNewPassword);
             setShowSuccessAlert('Votre mot de passe a bien été changé');
             setShowErrorAlert('');
         } catch {
@@ -46,4 +46,4 @@ function ResetPasswordForm() {
     );
 }
 
-export default ResetPasswordForm;
+export default ResetPasswordFormPage;

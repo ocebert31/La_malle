@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import Categories from '../../common/Articles/CategorySelector';
+import Categories from '../../common/Services/CategorySelector';
 
-function FilterArticle({ onCategoryChange }) {
+function FilterService({ onCategoryChange }) {
     const [showMenu, setShowMenu] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(""); 
 
@@ -39,4 +39,4 @@ function FilterArticle({ onCategoryChange }) {
     );
 }
 
-export default FilterArticle;
+export default FilterService;

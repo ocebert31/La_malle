@@ -1,7 +1,7 @@
 import { fetchRequest } from "./apiRequest";
 
-async function favoriteArticle(articleId, token) {
-    return fetchRequest(`/favorites`, { method: 'POST', body: {articleId}, token });
+async function createFavoriteService(serviceId, token) {
+    return fetchRequest(`/favorites`, { method: 'POST', body: {serviceId}, token });
 }
 
-export {favoriteArticle};
+export {createFavoriteService};

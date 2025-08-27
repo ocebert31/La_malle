@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import ListCategory from '../components/Dashboard/Category/ListCategory.js';
 import Statistic from '../components/Dashboard/Statistic/Statistic.js';
-import tabs from '../utils/constants/tabs';
+import tabs from '../utils/constants/dashboardTabs.js';
 import UserList from '../components/Dashboard/UserList/UserList.js';
-import GetAllRequest from '../components/Dashboard/Request/GetAllRequest.js';
+import GetAllContact from '../components/Dashboard/Contact/GetAllContact.js';
 
 function DashboardPage() {
-    const [activeTab, setActiveTab] = useState('request');
+    const [activeTab, setActiveTab] = useState('contact');
 
     return (
         <div className="bg-gray-100 min-h-screen font-montserrat">
@@ -32,7 +32,7 @@ function DashboardPage() {
                 </div>
                 {/* Contenu principal responsive */}
                 <div className="w-full">
-                    {activeTab === 'request' && <GetAllRequest />}
+                    {activeTab === 'contact' && <GetAllContact />}
                     {activeTab === 'users' && <UserList />}
                     {activeTab === 'category' && <ListCategory />}
                     {activeTab === 'stat' && <Statistic />}

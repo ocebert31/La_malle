@@ -1,9 +1,9 @@
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function EditArticleButton({ editArticle, isEditing }) {
+function EditServiceButton({ editService, isEditing }) {
     const activateEditing = () => {
-        editArticle();
+        editService();
     }
 
     return (
@@ -17,4 +17,4 @@ function EditArticleButton({ editArticle, isEditing }) {
     )
 }
 
-export default EditArticleButton;
+export default EditServiceButton;

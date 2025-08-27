@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import ErrorAlert from '../../Notifications/ErrorAlert';
-import { useAuth } from "../../../context/AuthContext"; 
-import { getRequest } from "../../../services/contactService";
-import RequestCard from "./RequestCard";
-import InfiniteScrollComponent from '../../../common/UI/infiniteScroll';
-import SearchBar from '../../../common/Articles/SearchBar.js';
-import { checkHasMore } from "../../../utils/helpers/checkHasMore.js";
+import ErrorAlert from '../../Notifications/ErrorAlert.js';
+import { useAuth } from "../../../context/AuthContext.js"; 
+import { getContact } from "../../../services/contactService.js";
+import ContactCard from "./ContactCard.js";
+import InfiniteScrollComponent from '../../../common/UI/infiniteScroll.js';
+import SearchBar from '../../../common/Services/SearchBar.js';
+import { checkHasMore } from "../../../utils/pagination.js";
 import UrgencyFilter from "./UrgencyFilter.js";
 import StatusFilter from "./StatusFilter.js";
 
-function GetAllRequest() {
-    const [requests, setRequests] = useState([]);
+function GetAllContact() {
+    const [contacts, setContacts] = useState([]);
     const [searchQuery, setSearchQuery] = useState(''); 
     const [showErrorAlert, setShowErrorAlert] = useState("");
     const { token } = useAuth();
@@ -22,25 +22,25 @@ function GetAllRequest() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {        
-        setRequests([]); 
+        setContacts([]); 
         setPage(1);
         setHasMore(true);
     }, [searchQuery, urgency, status]);
     
     useEffect(() => {
-        const loadRequests = async () => {
+        const loadContacts = async () => {
             try {
                 setLoading(true);
-                const fetchedRequests = await getRequest(searchQuery, page, limit, urgency, status, token);
-                setRequests(prevRequests => page === 1 ? fetchedRequests.requests : [...prevRequests, ...fetchedRequests.requests]);
-                checkHasMore(fetchedRequests, limit, setHasMore);
+                const fetchedContacts = await getContact(searchQuery, page, limit, urgency, status, token);
+                setContacts(prevContacts => page === 1 ? fetchedContacts.contacts : [...prevContacts, ...fetchedContacts.contacts]);
+                checkHasMore(fetchedContacts, limit, setHasMore);
             } catch {
                 setShowErrorAlert("Erreur lors de la récupération des demandes");
             } finally {
                 setLoading(false);
             }
         };
-        loadRequests();
+        loadContacts();
     }, [searchQuery, page, limit, urgency, status, token]);
 
     const handleSearchQueryChange = (search) => {
@@ -57,21 +57,21 @@ function GetAllRequest() {
                 Liste des demandes
             </h2>
             <p className="text-center text-gray-500 mb-8">
-                Vous avez {requests.length} demande{requests.length > 1 ? "s" : ""}
+                Vous avez {contacts.length} demande{contacts.length > 1 ? "s" : ""}
             </p>
-            {loading && requests.length === 0  ? (
+            {loading && contacts.length === 0  ? (
                 <div className="flex justify-center items-center py-6">
                     <div className="w-10 h-10 border-4 border-t-primary border-gray-300 rounded-full animate-spin"></div>
                 </div>
-            ) : !loading && requests.length === 0 ? (
+            ) : !loading && contacts.length === 0 ? (
                 <p className="text-gray-600 text-center text-lg mt-10">
                 Aucune demande pour l’instant.
                 </p>
             ) : (
-            <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={requests.length} hasMore={hasMore}>
+            <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={contacts.length} hasMore={hasMore}>
                 <div className="max-w-7xl mx-auto grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                    {requests.map((req) => (
-                        <RequestCard key={req._id} request={req} setRequests={setRequests}/>
+                    {contacts.map((req) => (
+                        <ContactCard key={req._id} contact={req} setContacts={setContacts}/>
                     ))}
                 </div>
             </InfiniteScrollComponent>
@@ -83,4 +83,4 @@ function GetAllRequest() {
     );
 }
 
-export default GetAllRequest;
+export default GetAllContact;

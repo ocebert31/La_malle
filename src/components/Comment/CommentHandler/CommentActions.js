@@ -2,7 +2,7 @@ import EditCommentButton from './EditCommentButton';
 import DeleteCommentButton from "./DeleteCommentButton";
 import Vote from '../../../common/Votes/Vote';
 import { useAuth } from "../../../context/AuthContext";
-import { isAuthor } from '../../../utils/helpers/autorization';
+import { isAuthor } from '../../../utils/autorization';
 
 function CommentActions({comment, commentState, isEditing, setIsEditing, setIsHidden, content, setContent, handleCommentDeleted}) {
     const { user } = useAuth();

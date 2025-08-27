@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
-import { postInscription } from '../services/authenticationService';
+import { registration } from '../services/authenticationService';
 import './RegisterPage.css';
 import { Link } from 'react-router-dom';
 import SuccessAlert from '../components/Notifications/SuccessAlert';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
 import { useState } from 'react';
-import { confirmPasswordMatch } from '../utils/validators/confirmPasswordMatch';
+import { confirmPasswordMatch } from '../utils/password';
 import FormInput from '../common/Contact/FormInput';
 
 function RegisterPage() {
@@ -19,7 +19,7 @@ function RegisterPage() {
     const onSubmit = async (data) => {
         confirmPasswordMatch(setCheckConfirmPassword, password, confirmPassword)
         try {
-            await postInscription(data);
+            await registration(data);
             setShowSuccessAlert("Vous êtes désormais inscrit avec succès !");
             setShowErrorAlert('');
             setIsConfirmationRegistration(true)

@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import { createCategories } from '../../../../services/categoryService';
+import { createCategory } from '../../../../services/categoryService';
 import { useAuth } from '../../../../context/AuthContext';
 import { useForm, Controller } from 'react-hook-form';
 import CategoryNameInput from './CategoryNameInput';
@@ -12,7 +12,7 @@ function NewCategoryForm({handleCategoryAdded}) {
 
     const onSubmit = async (data) => {
         try {
-            const result = await createCategories(data, token);
+            const result = await createCategory(data, token);
             handleCategoryAdded(result.categories);
             reset();
         } catch {

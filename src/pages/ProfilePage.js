@@ -1,7 +1,7 @@
 import { useAuth } from '../context/AuthContext';
 import EditAvatar from '../components/Profile/AvatarHandler/EditAvatar'; 
 import DisplayAvatar from '../components/Profile/AvatarHandler/DisplayAvatar';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import EmailForm from '../components/Profile/CredentialHandler/EmailForm';
 import PasswordForm from '../components/Profile/CredentialHandler/PasswordForm';
 import defaultAvatarOptions from '../utils/constants/defaultAvatarOptions';
