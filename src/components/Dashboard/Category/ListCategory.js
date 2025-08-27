@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import {getCategories} from '../../../services/categoryService';
 import { useAuth } from '../../../context/AuthContext'
 import NewCategoryForm from './CategoryForm/NewCategoryForm';
-import DeleteCategoryButton from './CategoryHandler/DeleteCategoryButton';
 import EditCategoryButton from './CategoryHandler/EditCategoryButton';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ErrorAlert from '../../Notifications/ErrorAlert';
+import DeleteButton from '../../../common/Handler/DeleteButton';
+import { deleteCategory } from '../../../services/categoryService';
 
 function ListCategory() {
     const { token } = useAuth();
@@ -67,7 +68,7 @@ function ListCategory() {
                         <EditCategoryButton category={category} handleCategoryUpdated={handleCategoryUpdated} editCategory={editCategory}/>
                     ) : (
                         <>
-                            <DeleteCategoryButton category={category} handleCategoryDelete={handleCategoryDelete}/>
+                            <DeleteButton resource={category} deleteRessource={deleteCategory} onDelete={handleCategoryDelete} label="de la catégorie"/>
                             <p className="truncate max-w-xs" title={category.name}>
                                 {category.name}
                             </p>

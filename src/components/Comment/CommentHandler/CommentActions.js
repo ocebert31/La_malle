@@ -1,8 +1,9 @@
 import EditCommentButton from './EditCommentButton';
-import DeleteCommentButton from "./DeleteCommentButton";
 import Vote from '../../../common/Votes/Vote';
 import { useAuth } from "../../../context/AuthContext";
 import { isAuthor } from '../../../utils/autorization';
+import DeleteButton from '../../../common/Handler/DeleteButton';
+import { deleteComment } from '../../../services/commentService';
 
 function CommentActions({comment, commentState, isEditing, setIsEditing, setIsHidden, content, setContent, handleCommentDeleted}) {
     const { user } = useAuth();
@@ -15,7 +16,7 @@ function CommentActions({comment, commentState, isEditing, setIsEditing, setIsHi
                     {!isEditing ? (
                         <>
                             <EditCommentButton comment={comment} content={content} setContent={setContent} isEditing={isEditing} setIsEditing={setIsEditing}/>
-                            <DeleteCommentButton id={comment._id} handleCommentDeleted={handleCommentDeleted} comment={comment}/>
+                            <DeleteButton resource={comment} deleteRessource={deleteComment} onDelete={handleCommentDeleted} onDeleteParam="object" label="du commentaire"/>
                         </>
                     ) : (
                         <EditCommentButton comment={comment} content={content} setContent={setContent} isEditing={isEditing} setIsEditing={setIsEditing}/>

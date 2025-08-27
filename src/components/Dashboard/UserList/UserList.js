@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import InfiniteScrollComponent from "../../../common/UI/infiniteScroll";
 import { useAuth } from "../../../context/AuthContext";
-import { getUsers, updateUserRole, deleteUser } from "../../../services/adminService";
+import { getUsers, updateUserRole } from "../../../services/adminService";
 import SearchBar from "../../../common/Services/SearchBar.js";
 import { checkHasMore } from "../../../utils/pagination.js";
 import ErrorAlert from "../../Notifications/ErrorAlert.js";
-import DeleteUserButton from "./DeleteUserButton.js";
-import DeleteUserModal from "./DeleteUserModal.js";
+import DeleteUserButton from "../../../common/Handler/DeleteButton.js";
+import { deleteUser } from "../../../services/adminService";
 
 function UserList() {
   const [users, setUsers] = useState([]);
@@ -17,10 +17,6 @@ function UserList() {
   const { token } = useAuth();
   const [limit] = useState(10);
   const [loading, setLoading] = useState(true);
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [modalLoading, setModalLoading] = useState(false);
 
   useEffect(() => {
     setUsers([]);
@@ -33,7 +29,9 @@ function UserList() {
       try {
         setLoading(true);
         const result = await getUsers(searchQuery, page, limit, token);
-        setUsers((prevUsers) => page === 1 ? result.users : [...prevUsers, ...result.users]);
+        setUsers((prevUsers) =>
+          page === 1 ? result.users : [...prevUsers, ...result.users]
+        );
         checkHasMore(result, limit, setHasMore);
       } catch {
         setShowErrorAlert("Erreur lors du chargement des utilisateurs");
@@ -57,29 +55,13 @@ function UserList() {
     }
   };
 
-    const handleSearchQueryChange = (search) => {
-      setSearchQuery(search);
-      setPage(1);
-    }
-
-
-  const handleOpenModal = (user) => {
-    setSelectedUser(user);
-    setModalOpen(true);
+  const handleSearchQueryChange = (search) => {
+    setSearchQuery(search);
+    setPage(1);
   };
 
-  const handleConfirmDelete = async () => {
-    try {
-      setModalLoading(true);
-      await deleteUser(selectedUser._id, token);
-      setUsers((prev) => prev.filter(u => u._id !== selectedUser._id));
-    } catch {
-      alert("Erreur lors de la suppression de l'utilisateur");
-    } finally {
-      setModalLoading(false);
-      setModalOpen(false);
-      setSelectedUser(null);
-    }
+  const handleUserDelete = (id) => {
+    setUsers(users.filter((user) => user._id !== id));
   };
 
   return (
@@ -90,24 +72,30 @@ function UserList() {
           <div className="w-10 h-10 border-4 border-t-primary border-gray-300 rounded-full animate-spin"></div>
         </div>
       ) : !loading && users.length === 0 ? (
-        <p className="text-gray-600 text-center text-lg mt-10">Aucun utilisateur pour l'instant.</p>
+        <p className="text-gray-600 text-center text-lg mt-10">
+          Aucun utilisateur pour l'instant.
+        </p>
       ) : (
         <InfiniteScrollComponent loadMore={() => setPage(page + 1)} dataLength={users.length} hasMore={hasMore}>
           <ul className="space-y-4">
             {users.map((user) => (
               <li key={user._id} className="border border-gray-200 p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-                <p className="text-gray-800 text-sm sm:text-base break-words">{user.email}</p>
+                <p className="text-gray-800 text-sm sm:text-base break-words">
+                  {user.email}
+                </p>
                 {user.role !== "admin" && (
                   <div className="flex flex-col sm:flex-row sm:ml-auto gap-2 w-full sm:w-auto">
                     <div className="flex gap-2">
-                      <select 
-                      value={user.role}
-                        onChange={(e) => handleRoleChange(user._id, e.target.value)}
+                      <select
+                        value={user.role}
+                        onChange={(e) =>
+                          handleRoleChange(user._id, e.target.value)
+                        }
                         className="border border-gray-300 px-3 py-2 rounded-md bg-gray-50 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#7a6bfc]">
                         <option value="author">Auteur</option>
                         <option value="reader">Lecteur</option>
                       </select>
-                      <DeleteUserButton user={user} onOpen={handleOpenModal} />
+                      <DeleteUserButton resource={user} deleteRessource={deleteUser} onDelete={handleUserDelete} label="de l'utilisateur"/>
                     </div>
                   </div>
                 )}
@@ -116,16 +104,12 @@ function UserList() {
           </ul>
         </InfiniteScrollComponent>
       )}
-      {showErrorAlert && <ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)} />}
-      <DeleteUserModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onConfirm={handleConfirmDelete}
-        userEmail={selectedUser?.email}
-        loading={modalLoading}
-      />
+      {showErrorAlert && (
+        <ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>
+      )}
     </div>
   );
 }
 
 export default UserList;
+
