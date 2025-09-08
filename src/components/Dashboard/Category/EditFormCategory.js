@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import { updateCategory } from '../../../../services/categoryService';
+import { updateCategory } from '../../../services/categoryService';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../../../context/AuthContext';
-import EditActions from '../../../../common/UI/EditActions';
-import ErrorAlert from '../../../Notifications/ErrorAlert';
-import FormInput from '../../../../common/Contact/FormInput';
+import { useAuth } from '../../../context/AuthContext';
+import EditActions from '../../../common/Handler/EditButton';
+import ErrorAlert from '../../Notifications/ErrorAlert';
+import FormInput from '../../../common/FormInput';
 
-function EditCategoryButton({ category, handleCategoryUpdated, editCategory }) {
+function EditFormCategory({ category, handleCategoryUpdated, editCategory }) {
     const { token } = useAuth(); 
     const [content, setContent] = useState(category.name);
-    const { register, control, handleSubmit, formState: { errors } } = useForm({ defaultValues: { content } });
+    const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: { content } });
     const [showErrorAlert, setShowErrorAlert] = useState("");
 
     const onSubmit = async (data) => {
@@ -38,5 +38,5 @@ function EditCategoryButton({ category, handleCategoryUpdated, editCategory }) {
     );
 }
 
-export default EditCategoryButton;
+export default EditFormCategory;
 

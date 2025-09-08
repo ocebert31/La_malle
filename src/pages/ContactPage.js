@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import FormInput from "../common/Contact/FormInput";
+import FormInput from "../common/FormInput";
 import { useAuth } from "../context/AuthContext";
 import { createContact } from '../services/contactService';
 import SuccessAlert from "../components/Notifications/SuccessAlert";

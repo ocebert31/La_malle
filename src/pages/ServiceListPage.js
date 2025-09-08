@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getServices } from '../services/serviceService.js';
 import ServiceCard from '../components/Service/DisplayService/ServiceCard.js';
-import SearchBar from '../common/Services/SearchBar.js.js';
+import SearchBar from '../common/SearchBar.js.js';
 import { useAuth } from '../context/AuthContext.js';
 import FilterService from '../components/Service/FilterService.js';
 import InfiniteScrollComponent from '../common/UI/infiniteScroll.js';

@@ -4,7 +4,7 @@ import DisplayAvatar from '../components/Profile/AvatarHandler/DisplayAvatar';
 import { useState, useEffect } from 'react';
 import EmailForm from '../components/Profile/CredentialHandler/EmailForm';
 import PasswordForm from '../components/Profile/CredentialHandler/PasswordForm';
-import defaultAvatarOptions from '../utils/constants/defaultAvatarOptions';
+import { defaultAvatarOptions } from '../utils/constants/avatar';
 
 function ProfilePage() {
     const { user, updateUser } = useAuth();

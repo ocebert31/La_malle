@@ -2,7 +2,8 @@ import { useAuth } from '../../../context/AuthContext';
 import { updateStatusContact } from "../../../services/contactService";
 import SuccessAlert from '../../Notifications/SuccessAlert';
 import ErrorAlert from '../../Notifications/ErrorAlert';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { contactStatusColors } from '../../../utils/constants/contact';
 
 function StatusSelect({ contact, setContacts }) {
     const { token } = useAuth(); 
@@ -29,16 +30,9 @@ function StatusSelect({ contact, setContacts }) {
         );
     };
 
-    const statusColors = {
-        "En attente": "bg-yellow-100 text-yellow-800",
-        "Acceptée": "bg-green-100 text-green-800",
-        "Rejetée": "bg-red-100 text-red-800",
-        "En cours": "bg-blue-100 text-blue-800",
-    };
-
     return (
         <div>
-            <select value={contact.status} onChange={(e) => handleStatusChange(contact._id, e.target.value)} className={`p-2 rounded-xl border-none focus:ring-2 focus:ring-[#7a6bfc] focus:outline-none ${statusColors[contact.status]}`}>
+            <select value={contact.status} onChange={(e) => handleStatusChange(contact._id, e.target.value)} className={`p-2 rounded-xl border-none focus:ring-2 focus:ring-[#7a6bfc] focus:outline-none ${contactStatusColors[contact.status]}`}>
                 <option value="En attente">En attente</option>
                 <option value="Acceptée">Acceptée</option>
                 <option value="Rejetée">Rejetée</option>

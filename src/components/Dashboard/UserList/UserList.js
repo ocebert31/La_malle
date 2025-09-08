@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import InfiniteScrollComponent from "../../../common/UI/infiniteScroll";
 import { useAuth } from "../../../context/AuthContext";
 import { getUsers, updateUserRole } from "../../../services/adminService";
-import SearchBar from "../../../common/Services/SearchBar.js";
+import SearchBar from "../../../common/SearchBar.js.js";
 import { checkHasMore } from "../../../utils/pagination.js";
 import ErrorAlert from "../../Notifications/ErrorAlert.js";
 import DeleteUserButton from "../../../common/Handler/DeleteButton.js";

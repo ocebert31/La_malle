@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getComments } from '../../services/commentService';
 import DisplayComment from './DisplayComment/DisplayComment';
-import NewCommentForm from './CommentForm/NewCommentForm';
+import NewCommentForm from './CommentForm/CreateCommentForm';
 import { useAuth } from '../../context/AuthContext';
-import defaultAvatarData from '../../utils/constants/defaultAvatarOptions';
+import { defaultAvatarOptions } from '../../utils/constants/avatar';
 import InfiniteScrollComponent from '../../common/UI/infiniteScroll';
 import ErrorAlert from '../Notifications/ErrorAlert';
 import { checkHasMore } from '../../utils/pagination';
@@ -48,7 +48,7 @@ function CommentList({ serviceId }) {
 
     const valueOfAvatarOptions = (user) => {
         if (!user || user.avatarOptions === undefined || (Object.keys(user.avatarOptions).length === 0)) {
-            return defaultAvatarData;
+            return defaultAvatarOptions;
         } else {
             return user.avatarOptions;
         }

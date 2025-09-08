@@ -4,8 +4,8 @@ import ContentEditor from "../../components/Service/ContentEditor";
 import TagManager from "../../components/Service/TagManager";
 import CategorySelector from "./CategorySelector";
 import ErrorAlert from "../../components/Notifications/ErrorAlert";
-import FormInput from "../Contact/FormInput";
-import EditActions from "../UI/EditActions";
+import FormInput from "../FormInput";
+import EditActions from "../Handler/EditButton";
 
 function ServiceForm({ initialValues = {}, onSubmit, submitLabel, cancelEdit, title }) {
     const [showErrorAlert, setShowErrorAlert] = useState("");

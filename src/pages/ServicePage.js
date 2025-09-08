@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getOneService } from '../services/serviceService';
+import { deleteService, getOneService } from '../services/serviceService';
 import { useParams } from 'react-router-dom';
-import DeleteServiceButton from '../components/Service/ServiceHandler/DeleteServiceButton';
 import EditServiceButton from '../components/Service/ServiceHandler/EditServiceButton';
 import ServiceContent from '../components/Service/DisplayService/ServiceContent';
 import EditServiceForm from '../components/Service/EditServiceForm';
@@ -9,6 +8,8 @@ import { useAuth } from "../context/AuthContext";
 import CommentList from '../components/Comment/CommentList';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
 import { isAuthor } from '../utils/autorization';
+import DeleteButton from '../common/Handler/DeleteButton';
+import { useNavigate } from 'react-router-dom';
 
 function ServicePage() {
     const [service, setService] = useState(null);
@@ -16,6 +17,7 @@ function ServicePage() {
     const [isEditing, setIsEditing] = useState(false);
     const { user, token } = useAuth();
     const [showErrorAlert, setShowErrorAlert] = useState("");
+    const navigate = useNavigate();
     
     useEffect(() => {
         const loadService = async () => {
@@ -37,6 +39,10 @@ function ServicePage() {
         setIsEditing(false);
     };
 
+    const handleServiceDelete = () => {
+    navigate("/services");
+  };
+
     if (!service) {
         return  <div className="flex justify-center items-center min-h-screen bg-gray-100">
                     <div className="text-center">
@@ -51,7 +57,7 @@ function ServicePage() {
             <div className="container mx-auto px-4 py-8">
                  {isAuthor(user, service)  && (
                     <div className="flex justify-center space-x-4 mb-4">
-                        <DeleteServiceButton id={service._id} />
+                        <DeleteButton resource={service} deleteRessource={deleteService} onDelete={handleServiceDelete} onDeleteParam="object" label="du service"/>
                         <EditServiceButton editService={editService} isEditing={isEditing}/>
                     </div>
                 )}

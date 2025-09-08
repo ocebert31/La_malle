@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../../../context/AuthContext';
 import SuccessAlert from '../../Notifications/SuccessAlert';
 import ErrorAlert from '../../Notifications/ErrorAlert';
-import FormInput from '../../../common/Contact/FormInput';
+import FormInput from '../../../common/FormInput';
 
 function EmailForm() {
     const [showSuccessAlert, setShowSuccessAlert] = useState('');

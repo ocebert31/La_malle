@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import SuccessAlert from '../../Notifications/SuccessAlert';
 import ErrorAlert from '../../Notifications/ErrorAlert';
 import { confirmPasswordMatch } from '../../../utils/password';
-import FormInput from '../../../common/Contact/FormInput';
+import FormInput from '../../../common/FormInput';
 
 function PasswordForm() {
     const { token } = useAuth();

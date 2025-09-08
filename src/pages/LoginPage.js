@@ -6,7 +6,7 @@ import './LoginPage.css';
 import { useState } from 'react';
 import SuccessAlert from '../components/Notifications/SuccessAlert';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
-import FormInput from '../common/Contact/FormInput';
+import FormInput from '../common/FormInput';
 
 function LoginPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();

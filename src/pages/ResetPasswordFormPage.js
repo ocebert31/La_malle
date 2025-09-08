@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import SuccessAlert from '../components/Notifications/SuccessAlert';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
 import { confirmPasswordMatch } from '../utils/password';
-import FormInput from '../common/Contact/FormInput';
+import FormInput from '../common/FormInput';
 
 function ResetPasswordFormPage() {
     const [showSuccessAlert, setShowSuccessAlert] = useState('');

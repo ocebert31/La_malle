@@ -1,4 +1,4 @@
-import EditCommentButton from './EditCommentButton';
+import EditCommentButton from './EditFormComment';
 import Vote from '../../../common/Votes/Vote';
 import { useAuth } from "../../../context/AuthContext";
 import { isAuthor } from '../../../utils/autorization';

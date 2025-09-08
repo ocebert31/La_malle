@@ -4,7 +4,7 @@ import { useAuth } from "../../../context/AuthContext.js";
 import { getContact } from "../../../services/contactService.js";
 import ContactCard from "./ContactCard.js";
 import InfiniteScrollComponent from '../../../common/UI/infiniteScroll.js';
-import SearchBar from '../../../common/Services/SearchBar.js';
+import SearchBar from "../../../common/SearchBar.js.js";
 import { checkHasMore } from "../../../utils/pagination.js";
 import UrgencyFilter from "./UrgencyFilter.js";
 import StatusFilter from "./StatusFilter.js";

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { forgotPassword } from '../services/authenticationService';
 import SuccessAlert from '../components/Notifications/SuccessAlert';
 import ErrorAlert from '../components/Notifications/ErrorAlert';
-import FormInput from '../common/Contact/FormInput';
+import FormInput from '../common/FormInput';
 
 function ResetPasswordPage() {
     const [showSuccessAlert, setShowSuccessAlert] = useState('');

@@ -3,7 +3,7 @@ import Avatar from 'avataaars';
 import { updateAvatarOptions } from '../../../services/authenticationService';
 import { useAuth } from '../../../context/AuthContext';
 import SelectorAvatar from './SelectorAvatar';
-import avatarOptionsData from '../../../utils/constants/avatarCustomizationOptions';
+import { avatarCustomizationOptions } from '../../../utils/constants/avatar';
 import ErrorAlert from '../../Notifications/ErrorAlert';
 
 function EditAvatar ({ avatarOptions, onAvatarChange }) {
@@ -40,7 +40,7 @@ function EditAvatar ({ avatarOptions, onAvatarChange }) {
                 <Avatar {...localAvatarOptions} />
             </div>
             <div className="space-y-4">
-                {avatarOptionsData.map(({ label, key, options }) => (
+                {avatarCustomizationOptions.map(({ label, key, options }) => (
                     <SelectorAvatar key={key} label={label} value={localAvatarOptions[key]} options={options} onChange={(e) => handleChange(key, e.target.value)}/>
                 ))}
                 <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300" onClick={handleSubmit}>

@@ -1,6 +1,6 @@
 import Avatar from 'avataaars';
-import React, { useEffect, useState } from 'react';
-import defaultAvatarOptions from '../../../utils/constants/defaultAvatarOptions';
+import { useEffect, useState } from 'react';
+import { defaultAvatarOptions } from '../../../utils/constants/avatar';
 import { formatNumericDate } from '../../../utils/date';
 
 function CommentAvatar({comment}) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ToggleCommentVisibility from './ToggleCommentVisibility';
-import NewReplyForm from '../CommentForm/NewReplyForm';
+import NewReplyForm from '../CommentForm/CreateReplyForm';
 import DisplayReply from './DisplayReply';
 import CommentAvatar from '../../Profile/AvatarHandler/CommentAvatar';
 import CommentActions from '../CommentHandler/CommentActions';

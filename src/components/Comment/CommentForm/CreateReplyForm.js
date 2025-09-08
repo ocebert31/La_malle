@@ -1,8 +1,8 @@
-import NewCommentForm from "./NewCommentForm";
+import NewCommentForm from "./CreateCommentForm";
 import React, { useState } from 'react';
 import { useAuth } from "../../../context/AuthContext";
 
-function NewReplyForm ({comment, typeForm, onReply}) {
+function CreateReplyForm ({comment, typeForm, onReply}) {
     const [isReply, setIsReply] = useState(false);
     const { token } = useAuth();
 
@@ -32,4 +32,4 @@ function NewReplyForm ({comment, typeForm, onReply}) {
     )
 }
 
-export default NewReplyForm;
+export default CreateReplyForm;

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {getCategories} from '../../../services/categoryService';
 import { useAuth } from '../../../context/AuthContext'
-import NewCategoryForm from './CategoryForm/NewCategoryForm';
-import EditCategoryButton from './CategoryHandler/EditCategoryButton';
+import NewCategoryForm from './CreateCategoryForm';
+import EditCategoryButton from './EditFormCategory';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ErrorAlert from '../../Notifications/ErrorAlert';
 import DeleteButton from '../../../common/Handler/DeleteButton';
 import { deleteCategory } from '../../../services/categoryService';
 
-function ListCategory() {
+function CategoryList() {
     const { token } = useAuth();
     const [categories, setCategories] = useState([]);
     const [isEditing, setIsEditing] = useState(null);
@@ -85,4 +85,4 @@ function ListCategory() {
     )
 }
 
-export default ListCategory;
+export default CategoryList;

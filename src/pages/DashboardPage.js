@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ListCategory from '../components/Dashboard/Category/ListCategory.js';
+import CategoryList from '../components/Dashboard/Category/CategoryList.js';
 import Statistic from '../components/Dashboard/Statistic/Statistic.js';
 import tabs from '../utils/constants/dashboardTabs.js';
 import UserList from '../components/Dashboard/UserList/UserList.js';
@@ -34,7 +34,7 @@ function DashboardPage() {
                 <div className="w-full">
                     {activeTab === 'contact' && <GetAllContact />}
                     {activeTab === 'users' && <UserList />}
-                    {activeTab === 'category' && <ListCategory />}
+                    {activeTab === 'category' && <CategoryList />}
                     {activeTab === 'stat' && <Statistic />}
                 </div>
             </div>

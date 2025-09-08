@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCategories } from '../../services/categoryService';
 import ErrorAlert from '../../components/Notifications/ErrorAlert';
-import FormInput from '../Contact/FormInput';
+import FormInput from '../FormInput';
 
 function CategorySelector({ value, onChange, errors }) {
     const [categories, setCategories] = useState([]);

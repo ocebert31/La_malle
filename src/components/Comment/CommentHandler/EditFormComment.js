@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { updateComment } from '../../../services/commentService';
 import { useForm, Controller } from 'react-hook-form';
 import { useAuth } from '../../../context/AuthContext';
-import EditActions from '../../../common/UI/EditActions';
+import EditActions from '../../../common/Handler/EditButton';
 import ErrorAlert from '../../Notifications/ErrorAlert';
-import FormInput from '../../../common/Contact/FormInput';
+import FormInput from '../../../common/FormInput';
 
 function EditCommentButton({ comment, content, setContent, isEditing, setIsEditing }) {
     const { token } = useAuth(); 

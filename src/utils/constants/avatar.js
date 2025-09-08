@@ -1,4 +1,4 @@
-const avatarCustomizationOptions = [
+export const avatarCustomizationOptions = [
     {
         label: "Arrière Plan",
         key: "avatarStyle",
@@ -128,4 +128,16 @@ const avatarCustomizationOptions = [
     },
 ];
 
-export default avatarCustomizationOptions;
+export const defaultAvatarOptions = {
+    avatarStyle: 'Circle',
+    topType: 'ShortHairShortFlat',
+    accessoriesType: 'Prescription02',
+    hairColor: 'BrownDark',
+    facialHairType: 'BeardLight',
+    clotheType: 'Hoodie',
+    clotheColor: 'PastelBlue',
+    eyeType: 'Happy',
+    eyebrowType: 'Default',
+    mouthType: 'Smile',
+    skinColor: 'Light',
+};
