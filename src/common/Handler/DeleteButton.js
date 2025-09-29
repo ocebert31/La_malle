@@ -18,7 +18,6 @@ function DeleteButton({ resource, deleteRessource, onDelete, onDeleteParam = "id
       if (onDeleteParam === "object") {
         onDelete(resource);
       } else {
-        console.log("cc")
         onDelete(resource._id);
       }
       setModalOpen(false);

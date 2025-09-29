@@ -21,7 +21,7 @@ function CommentList({ serviceId }) {
         const loadComments = async () => {
             try {
                 const result = await getComments(serviceId, token, page, limit);
-                const commentsWithReplies = result.map(comment => ({
+                const commentsWithReplies = result.commentAndReplies.map(comment => ({
                     ...comment,
                     replies: comment.replies || []
                 }));
