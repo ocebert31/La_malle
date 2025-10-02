@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { createContact } from '../services/contactService';
 import SuccessAlert from "../components/Notifications/SuccessAlert";
 import ErrorAlert from "../components/Notifications/ErrorAlert";
+import { emailAnimator } from "../utils/constants/infoAnimator";
 
 function ContactPage() {
     const { token, user } = useAuth();
@@ -66,7 +67,7 @@ function ContactPage() {
             </button>
             <p className="text-center text-sm text-gray-600 mt-4">
                 Ou bien contactez-moi directement par téléphone au <span className="font-medium">06 80 28 15 56</span>  
-                <br></br>ou par mail : <a href="mailto:lamalle@gmail.fr" className="underline hover:text-primary font-medium">lamalle@gmail.fr</a>
+                <br></br>ou par mail : <a href={`mailto:${emailAnimator}`}  className="underline hover:text-primary font-medium">{emailAnimator}</a>
             </p>
             {showSuccessAlert && (<SuccessAlert message={showSuccessAlert} onClose={() => setShowSuccessAlert(false)}/>)}
             {showErrorAlert && (<ErrorAlert message={showErrorAlert} onClose={() => setShowErrorAlert(false)}/>)}

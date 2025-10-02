@@ -1,0 +1,1 @@
+export const emailAnimator="lamalle-animations-senior@outlook.fr"

@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { socialMediaLinks } from '../../utils/constants/socialMediaLinks';
 import { Link } from 'react-router-dom';
+import { emailAnimator } from '../../utils/constants/infoAnimator';
 
 function Footer() {
 
@@ -20,8 +21,8 @@ function Footer() {
             <div className="py-2 flex justify-center space-x-6 text-sm">
                 <p>📞 06 80 28 15 56</p>
                 <p>
-                    📧 <a href="mailto:lamalle@gmail.fr" className="underline hover:text-secondary">
-                        lamalle@gmail.fr
+                📧 <a href={`mailto:${emailAnimator}`} className="underline hover:text-secondary">
+                        {emailAnimator}
                     </a>
                 </p>
             </div>
